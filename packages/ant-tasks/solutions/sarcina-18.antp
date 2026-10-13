@@ -1,0 +1,92 @@
+INCEPUT
+  // a -> coloana 1, rindul 4
+  DREAPTA
+  DREAPTA
+  JOS
+  JOS
+  DREAPTA
+  JOS
+  STINGA
+  STINGA
+  // m -> coloana 1, rindul 1
+  SUS
+  SUS
+  DREAPTA
+  SUS
+  STINGA
+  // m -> coloana 1, rindul 3
+  DREAPTA
+  DREAPTA
+  JOS
+  STINGA
+  JOS
+  JOS
+  DREAPTA
+  DREAPTA
+  SUS
+  REPETA 3 ORI
+    STINGA
+  SFIRSIT REPETA
+  // t -> coloana 7, rindul 10
+  SUS
+  SUS
+  REPETA 4 ORI
+    DREAPTA
+  SFIRSIT REPETA
+  REPETA 8 ORI
+    JOS
+  SFIRSIT REPETA
+  STINGA
+  JOS
+  DREAPTA
+  // a -> coloana 1, rindul 2
+  REPETA 8 ORI
+    SUS
+  SFIRSIT REPETA
+  REPETA 4 ORI
+    STINGA
+  SFIRSIT REPETA
+  // a -> coloana 8, rindul 10
+  SUS
+  REPETA 5 ORI
+    DREAPTA
+  SFIRSIT REPETA
+  REPETA 7 ORI
+    JOS
+  SFIRSIT REPETA
+  STINGA
+  JOS
+  DREAPTA
+  SUS
+  DREAPTA
+  JOS
+  // t -> coloana 9, rindul 10
+  REPETA 6 ORI
+    SUS
+  SFIRSIT REPETA
+  STINGA
+  SUS
+  SUS
+  DREAPTA
+  REPETA 7 ORI
+    JOS
+  SFIRSIT REPETA
+  STINGA
+  JOS
+  DREAPTA
+  SUS
+  DREAPTA
+  JOS
+  // a -> coloana 10, rindul 10
+  REPETA 6 ORI
+    SUS
+  SFIRSIT REPETA
+  STINGA
+  SUS
+  DREAPTA
+  SUS
+  DREAPTA
+  REPETA 8 ORI
+    JOS
+  SFIRSIT REPETA
+SFIRSIT
