@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Toggle } from "@/components/ui/toggle";
 import type { Messages } from "@/i18n/messages";
+import { lastGrapheme } from "@/ide/grid/edit";
 
 export function GridControls({
 	t,
@@ -50,7 +51,7 @@ export function GridControls({
 					className="w-12 text-center font-mono"
 					value={char}
 					disabled={disabled || deleteMode}
-					onChange={(e) => onCharChange(e.target.value)}
+					onChange={(e) => onCharChange(lastGrapheme(e.target.value))}
 				/>
 			</label>
 			<Toggle

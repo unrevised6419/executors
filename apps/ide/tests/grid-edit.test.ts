@@ -1,6 +1,12 @@
 import { describe, expect, test } from "vitest";
 import type { World } from "@repo/ant-runtime";
-import { clearCell, isCellChar, placeObject, rotate } from "@/ide/grid/edit";
+import {
+	clearCell,
+	isCellChar,
+	lastGrapheme,
+	placeObject,
+	rotate,
+} from "@/ide/grid/edit";
 
 const world: World = {
 	ant: { x: 1, y: 1 },
@@ -46,4 +52,16 @@ test("rotate turns counter-clockwise", () => {
 		facings.push(w.facing);
 	}
 	expect(facings).toEqual(["up", "left", "down", "right"]);
+});
+
+describe("lastGrapheme", () => {
+	test.each([
+		["", ""],
+		["a", "a"],
+		["ab", "b"],
+		["a🐜", "🐜"],
+		["x👩‍👩‍👧", "👩‍👩‍👧"],
+	])("%j -> %j", (text, expected) =>
+		expect(lastGrapheme(text)).toBe(expected),
+	);
 });

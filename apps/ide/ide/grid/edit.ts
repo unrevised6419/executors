@@ -40,3 +40,12 @@ const NEXT_FACING = {
 export function rotate(world: World): World {
 	return { ...world, facing: NEXT_FACING[world.facing] };
 }
+
+const graphemes = new Intl.Segmenter(undefined, { granularity: "grapheme" });
+
+/** The last user-perceived character of `text`, so typing replaces the old one. */
+export function lastGrapheme(text: string): string {
+	let last = "";
+	for (const { segment } of graphemes.segment(text)) last = segment;
+	return last;
+}
