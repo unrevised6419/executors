@@ -1,9 +1,12 @@
 import "fake-indexeddb/auto";
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 import { INITIAL_WORLD } from "@repo/ant-runtime";
 import { START } from "@repo/ant-tasks";
 import { newExercise, type ExerciseStore } from "@/storage/exercise";
-import { IndexedDbExerciseStore } from "@/storage/indexeddb-store";
+import {
+	IndexedDbExerciseStore,
+	openExerciseStore,
+} from "@/storage/indexeddb-store";
 import { MemoryExerciseStore } from "@/storage/memory-store";
 
 test("newExercise starts tasks from the worksheet and free programs empty", () => {
@@ -50,4 +53,17 @@ describe.each<[string, () => Promise<ExerciseStore>]>([
 		expect(await store.findByTask(7)).toEqual(task);
 		expect(await store.findByTask(8)).toBeUndefined();
 	});
+});
+
+test("openExerciseStore falls back to memory when IndexedDB fails", async () => {
+	const open = vi
+		.spyOn(IndexedDbExerciseStore, "open")
+		.mockRejectedValue(new Error("blocked"));
+	try {
+		const opened = await openExerciseStore();
+		expect(opened.persistent).toBe(false);
+		expect(opened.store).toBeInstanceOf(MemoryExerciseStore);
+	} finally {
+		open.mockRestore();
+	}
 });
