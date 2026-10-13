@@ -1,0 +1,17 @@
+Ant executor file
+[table description]
+2 3
+4
+5 1 ª
+2 3 *
+4 3 ã
+10 10 #
+666 666 *
+// Împinge obiectul
+PROCEDURA Împinge
+  DREAPTA
+SFÎRªIT PROCEDURA
+ÎNCEPUT
+  Împinge
+  Împinge
+SFÎRªIT
