@@ -18,15 +18,16 @@ import {
 	type Statement,
 } from "@repo/ant-grammar";
 import {
-	ahead,
 	atEdge,
 	cellIndex,
 	checkWorld,
 	GRID_SIZE,
-	inGrid,
 	INITIAL_WORLD,
+	planMove,
 	type GridObject,
+	type MoveOutcome,
 	type Point,
+	type Push,
 	type World,
 } from "./world.ts";
 
@@ -76,12 +77,6 @@ export type RuntimeError =
 	  };
 
 export type RuntimeErrorCode = RuntimeError["code"];
-
-export interface Push {
-	readonly char: string;
-	readonly from: Point;
-	readonly to: Point;
-}
 
 /** What one step did. `range` is the source to highlight. */
 export type Step =
@@ -294,29 +289,19 @@ export class Run {
 		// The ant turns even when the move then fails.
 		this.#facing = direction;
 		const from = this.#ant;
-		const to = ahead(from, direction);
-		if (!inGrid(to)) return this.#fail({ code: "wall", range });
-		let push: Push | undefined;
-		const char = this.#cells[cellIndex(to)];
-		if (char !== undefined) {
-			const object = { ...to, char };
-			const beyond = ahead(to, direction);
-			if (!inGrid(beyond))
-				return this.#fail({ code: "push-off-grid", object, range });
-			const blocking = this.#cells[cellIndex(beyond)];
-			if (blocking !== undefined)
-				return this.#fail({
-					code: "push-blocked",
-					object,
-					blocker: { ...beyond, char: blocking },
-					range,
-				});
-			this.#cells[cellIndex(beyond)] = char;
-			this.#cells[cellIndex(to)] = undefined;
-			push = { char, from: to, to: beyond };
+		const outcome = planMove(
+			from,
+			direction,
+			(p) => this.#cells[cellIndex(p)],
+		);
+		if (!outcome.ok) return this.#fail(moveError(outcome, range));
+		const { push } = outcome;
+		if (push) {
+			this.#cells[cellIndex(push.to)] = push.char;
+			this.#cells[cellIndex(push.from)] = undefined;
 		}
-		this.#ant = to;
-		return { kind: "move", direction, from, to, push, range };
+		this.#ant = outcome.to;
+		return { kind: "move", direction, from, to: outcome.to, push, range };
 	}
 
 	#test(condition: Condition): boolean {
@@ -393,4 +378,23 @@ export function runProgram(program: Program, options?: RunOptions): RunResult {
 		world: run.world,
 		steps: run.steps,
 	};
+}
+
+function moveError(
+	outcome: Extract<MoveOutcome, { ok: false }>,
+	range: Range,
+): RuntimeError {
+	switch (outcome.code) {
+		case "wall":
+			return { code: "wall", range };
+		case "push-off-grid":
+			return { code: "push-off-grid", object: outcome.object, range };
+		case "push-blocked":
+			return {
+				code: "push-blocked",
+				object: outcome.object,
+				blocker: outcome.blocker,
+				range,
+			};
+	}
 }
