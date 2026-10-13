@@ -1,11 +1,11 @@
-# @executors/grammar-ant
+# @executors/ant-grammar
 
 Lexer, parser and static checker for the Furnica (ant) language, with syntax highlighting for the Monaco editor.
 
-The language keeps the structure of the original 2000 program (see [`../spec-ant`](../spec-ant/furnica-language-spec.md)) but **none of its bugs**. Where this package differs from the original, the original was wrong; spec-ant §9 lists every such case.
+The language keeps the structure of the original 2000 program (see [`../ant-spec`](../ant-spec/furnica-language-spec.md)) but **none of its bugs**. Where this package differs from the original, the original was wrong; ant-spec §9 lists every such case.
 
 ```ts
-import { parse, formatMessage, KEYWORD_SETS } from "@executors/grammar-ant";
+import { parse, formatMessage, KEYWORD_SETS } from "@executors/ant-grammar";
 
 const { program, diagnostics } = parse(source, { language: "ro" });
 for (const d of diagnostics)
@@ -81,7 +81,7 @@ Each error is a `Diagnostic` with a stable `code` and structured data; `formatMe
 ## File extensions
 
 - `.antp`: program text only, as parsed by `parse`. Used for the test corpus and examples.
-- `.ant`: the original exercise format: a header, the grid and the ant, then the program text (spec-ant §7). Reading and writing it is not part of this package.
+- `.ant`: the original exercise format: a header, the grid and the ant, then the program text (ant-spec §7). Reading and writing it is not part of this package.
 
 ## Highlighting
 
@@ -91,7 +91,7 @@ No token spans lines, so highlighting needs no state between lines. `highlightLi
 
 `pnpm test` runs:
 
-- `tests/corpus/`: one `.antp` program plus a `.json` expectation per case. The expectation is either `ast` (the program is valid and parses to this tree, written without positions) or `errors` (the diagnostics, matched on the fields listed). `spec` points at the spec-ant section the case comes from. Cases are grouped as `spec/` (spec-ant §11), `quirks/` (what the original wrongly accepted or rejected), `lexical/` and `structure/`.
+- `tests/corpus/`: one `.antp` program plus a `.json` expectation per case. The expectation is either `ast` (the program is valid and parses to this tree, written without positions) or `errors` (the diagnostics, matched on the fields listed). `spec` points at the ant-spec section the case comes from. Cases are grouped as `spec/` (ant-spec §11), `quirks/` (what the original wrongly accepted or rejected), `lexical/` and `structure/`.
 - `tests/api.test.ts`: word equality, ranges, messages and highlighting.
 
 `pnpm typecheck` runs `tsc` in strict mode.
