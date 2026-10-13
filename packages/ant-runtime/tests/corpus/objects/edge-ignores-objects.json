@@ -1,0 +1,12 @@
+{
+	"description": "An object in front of the ant is not the edge.",
+	"language": "ro",
+	"start": {
+		"facing": "right",
+		"grid": ["@A"]
+	},
+	"end": {
+		"facing": "right",
+		"grid": [".@A"]
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"description": "A loop pushes an object until it reaches the wall.",
+	"language": "ro",
+	"start": {
+		"facing": "down",
+		"grid": ["@A"]
+	},
+	"end": {
+		"facing": "right",
+		"grid": ["........@A"]
+	},
+	"error": {
+		"code": "push-off-grid",
+		"line": 3,
+		"column": 1,
+		"object": {
+			"x": 10,
+			"y": 1,
+			"char": "A"
+		}
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"description": "'*' is an ordinary object.",
+	"language": "ro",
+	"start": {
+		"facing": "down",
+		"grid": ["@*"]
+	},
+	"end": {
+		"facing": "right",
+		"grid": [".@*"]
+	}
+}

@@ -50,4 +50,4 @@ An IF branch is the step after its test. The WHILE test runs again after each pa
 pnpm test
 ```
 
-`tests/corpus/` holds one `.antp` program per case and a `.json` file with its start and expected end grid, drawn as text (`@` is the ant, `.` an empty cell), plus the runtime error if any. It covers the spec's §11 test cases with their corrected results, moves and pushes, control flow, procedures, limits and the three languages. `tests/api.test.ts` covers stepping and grid validation.
+`tests/corpus/` holds one `.antp` program per case and a `.json` file with its start and expected end grid, drawn as text (`@` is the ant, `.` an empty cell, any other grapheme an object), plus the runtime error if any. It covers the spec's §11 test cases with their corrected results, moves and pushes in every direction, objects (including `*`, combining marks and emoji sequences), control flow, procedures, limits and the three languages. `tests/api.test.ts` covers stepping and grid validation.
