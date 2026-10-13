@@ -1,0 +1,3 @@
+[submodule "packages/spec-ant"]
+	path = packages/spec-ant
+	url = git@github.com:unrevised6419/spec-ant.git
