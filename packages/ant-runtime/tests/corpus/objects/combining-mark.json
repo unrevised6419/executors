@@ -1,0 +1,12 @@
+{
+	"description": "A letter with a combining mark is one object.",
+	"language": "ro",
+	"start": {
+		"facing": "down",
+		"grid": ["@é"]
+	},
+	"end": {
+		"facing": "right",
+		"grid": [".@é"]
+	}
+}

@@ -4,7 +4,8 @@
  * run fails.
  *
  * Grids are drawn as rows of text: `@` is the ant, `.` an empty cell and any
- * other character an object. Rows may be short, and missing rows are empty.
+ * other character (grapheme) an object. Rows may be short, and missing rows
+ * are empty.
  */
 
 import { readdirSync, readFileSync } from "node:fs";
@@ -41,6 +42,8 @@ interface Expectation {
 
 const root = join(import.meta.dirname, "corpus");
 
+const graphemes = new Intl.Segmenter(undefined, { granularity: "grapheme" });
+
 function* sources(dir: string): Generator<string> {
 	for (const entry of readdirSync(dir, { withFileTypes: true }).sort((a, b) =>
 		a.name.localeCompare(b.name),
@@ -55,11 +58,13 @@ function toWorld({ facing, grid }: Grid): World {
 	let ant: Point | undefined;
 	const objects: GridObject[] = [];
 	grid.forEach((row, i) =>
-		Array.from(row).forEach((char, j) => {
-			const cell = { x: j + 1, y: i + 1 };
-			if (char === "@") ant = cell;
-			else if (char !== ".") objects.push({ ...cell, char });
-		}),
+		Array.from(graphemes.segment(row), (s) => s.segment).forEach(
+			(char, j) => {
+				const cell = { x: j + 1, y: i + 1 };
+				if (char === "@") ant = cell;
+				else if (char !== ".") objects.push({ ...cell, char });
+			},
+		),
 	);
 	if (ant === undefined) throw new Error("grid has no ant");
 	return { ant, facing, objects };

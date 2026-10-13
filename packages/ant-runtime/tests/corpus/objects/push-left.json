@@ -1,0 +1,12 @@
+{
+	"description": "Pushing left.",
+	"language": "ro",
+	"start": {
+		"facing": "down",
+		"grid": [".A@"]
+	},
+	"end": {
+		"facing": "left",
+		"grid": ["A@"]
+	}
+}
