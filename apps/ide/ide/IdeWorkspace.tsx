@@ -11,6 +11,7 @@ import {
 	type Language,
 } from "@repo/ant-grammar";
 import { moveAnt, type Point } from "@repo/ant-runtime";
+import { START } from "@repo/ant-tasks";
 import { Button } from "@/components/ui/button";
 import { useDialogs } from "@/components/dialogs";
 import { runtimeErrorMessage } from "@/i18n/errors";
@@ -38,6 +39,11 @@ import { StatusBar } from "./StatusBar";
 import { TaskPanel } from "./tasks/TaskPanel";
 import { Toolbar } from "./Toolbar";
 import { toolbarState } from "./toolbar-state";
+
+/** A blank source has nothing to mark. */
+function parseDiagnostics(source: string, language: Language) {
+	return source.trim() === "" ? [] : parse(source, { language }).diagnostics;
+}
 
 type Panel = "program" | "grid";
 
@@ -72,8 +78,7 @@ export function IdeWorkspace({
 			() =>
 				dispatch({
 					type: "set-diagnostics",
-					diagnostics: parse(exercise.source, { language })
-						.diagnostics,
+					diagnostics: parseDiagnostics(exercise.source, language),
 				}),
 			300,
 		);
@@ -92,13 +97,19 @@ export function IdeWorkspace({
 
 	function parseNow() {
 		const result = parse(exercise.source, { language });
-		dispatch({ type: "set-diagnostics", diagnostics: result.diagnostics });
+		dispatch({
+			type: "set-diagnostics",
+			diagnostics:
+				exercise.source.trim() === "" ? [] : result.diagnostics,
+		});
 		return result;
 	}
 
 	/** Starts a run from the start world; false when the program has errors. */
 	function begin(paused: boolean): boolean {
 		const { program, diagnostics } = parseNow();
+		// A blank program does not run, but is not an error to flag either.
+		if (exercise.source.trim() === "") return false;
 		if (!program) {
 			toast.error(t.syntaxErrors(diagnostics.length));
 			return false;
@@ -124,6 +135,10 @@ export function IdeWorkspace({
 			router.push(`/ide?id=${fresh.id}`);
 		},
 		onCheck: () => {
+			if (exercise.source.trim() === "") {
+				parseNow();
+				return;
+			}
 			const { diagnostics } = parseNow();
 			if (diagnostics.length === 0) toast.success(t.syntaxOk);
 			else toast.error(t.syntaxErrors(diagnostics.length));
@@ -324,7 +339,15 @@ export function IdeWorkspace({
 					<aside
 						className={cn(panel !== "grid" && "hidden lg:block")}
 					>
-						<TaskPanel t={t} task={task} check={state.goalCheck} />
+						<TaskPanel
+							t={t}
+							task={task}
+							check={state.goalCheck}
+							disabled={!editing}
+							onRestoreStart={() =>
+								dispatch({ type: "set-start", world: START })
+							}
+						/>
 					</aside>
 				)}
 			</main>

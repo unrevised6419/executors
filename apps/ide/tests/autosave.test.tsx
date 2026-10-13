@@ -30,13 +30,30 @@ test("saves 500 ms after the last change, not on mount", () => {
 	expect(save.mock.calls[0]![0].source).toBe("INCEPUT\nSUS");
 });
 
-test("saves at once when the page is hidden", () => {
+test("hiding the page with nothing pending saves nothing", () => {
 	const store = new MemoryExerciseStore();
 	const save = vi.spyOn(store, "save");
 	const exercise = newExercise({ language: "ro" });
 	renderHook(() => useAutosave(store, exercise));
 	vi.spyOn(document, "visibilityState", "get").mockReturnValue("hidden");
 	document.dispatchEvent(new Event("visibilitychange"));
+	expect(save).not.toHaveBeenCalled();
+});
+
+test("hiding the page saves a pending change once, without a second save", () => {
+	const store = new MemoryExerciseStore();
+	const save = vi.spyOn(store, "save");
+	const first = newExercise({ language: "ro" });
+	const { rerender } = renderHook(({ e }) => useAutosave(store, e), {
+		initialProps: { e: first },
+	});
+	rerender({ e: { ...first, source: "INCEPUT" } });
+	vi.advanceTimersByTime(100);
+	vi.spyOn(document, "visibilityState", "get").mockReturnValue("hidden");
+	document.dispatchEvent(new Event("visibilitychange"));
+	expect(save).toHaveBeenCalledTimes(1);
+	expect(save.mock.calls[0]![0].source).toBe("INCEPUT");
+	vi.advanceTimersByTime(1000);
 	expect(save).toHaveBeenCalledTimes(1);
 });
 

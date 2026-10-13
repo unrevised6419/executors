@@ -21,7 +21,6 @@ export function useAutosave(
 	delay = 500,
 	onError: (error: unknown) => void = console.error,
 ): void {
-	const latest = useRef(exercise);
 	const mounted = useRef(false);
 	const timer = useRef<ReturnType<typeof setTimeout>>(undefined);
 	const pending = useRef<Exercise | undefined>(undefined);
@@ -32,7 +31,6 @@ export function useAutosave(
 	});
 
 	useEffect(() => {
-		latest.current = exercise;
 		if (!mounted.current) {
 			mounted.current = true;
 			return;
@@ -59,8 +57,13 @@ export function useAutosave(
 
 	useEffect(() => {
 		const flush = () => {
-			if (document.visibilityState === "hidden")
-				persist(store, latest.current, report.current);
+			// Only a change still waiting is saved: the rest may be older than a
+			// copy another tab saved since, and saving it would overwrite that.
+			if (document.visibilityState !== "hidden" || !pending.current)
+				return;
+			clearTimeout(timer.current);
+			persist(store, pending.current, report.current);
+			pending.current = undefined;
 		};
 		document.addEventListener("visibilitychange", flush);
 		return () => document.removeEventListener("visibilitychange", flush);

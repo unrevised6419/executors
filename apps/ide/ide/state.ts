@@ -1,6 +1,12 @@
 import type { Diagnostic, Language, Range } from "@repo/ant-grammar";
 import type { RunStatus, RuntimeError, World } from "@repo/ant-runtime";
-import { checkGoal, TASKS, type GoalCheck, type Task } from "@repo/ant-tasks";
+import {
+	checkGoal,
+	START,
+	TASKS,
+	type GoalCheck,
+	type Task,
+} from "@repo/ant-tasks";
 import type { Exercise } from "@/storage/exercise";
 import type { Mode } from "./mode";
 
@@ -31,7 +37,13 @@ export type StepReport = { readonly world: World } & RunView;
 export type IdeAction =
 	| { type: "edit-source"; source: string }
 	| { type: "set-start"; world: World }
-	| { type: "replace-content"; source: string; start?: World }
+	| {
+			type: "replace-content";
+			source: string;
+			start?: World;
+			/** Names a free program; a task keeps the name of its task. */
+			title?: string;
+	  }
 	| { type: "set-language"; language: Language }
 	| { type: "set-diagnostics"; diagnostics: readonly Diagnostic[] }
 	| { type: "start-run"; paused: boolean }
@@ -59,6 +71,19 @@ export function taskOf(exercise: Exercise): Task | undefined {
 	return exercise.taskNumber === undefined
 		? undefined
 		: TASKS[exercise.taskNumber - 1];
+}
+
+function sameWorld(a: World, b: World): boolean {
+	return (
+		a.ant.x === b.ant.x &&
+		a.ant.y === b.ant.y &&
+		a.facing === b.facing &&
+		a.objects.length === b.objects.length &&
+		a.objects.every((o, i) => {
+			const other = b.objects[i]!;
+			return o.x === other.x && o.y === other.y && o.char === other.char;
+		})
+	);
 }
 
 const running = (mode: Mode) => mode === "running" || mode === "paused";
@@ -93,6 +118,10 @@ export function ideReducer(state: IdeState, action: IdeAction): IdeState {
 					...exercise,
 					source: action.source,
 					start: action.start ?? exercise.start,
+					title:
+						exercise.taskNumber === undefined
+							? (action.title ?? exercise.title)
+							: exercise.title,
 				},
 			);
 		case "set-language":
@@ -133,9 +162,11 @@ export function ideReducer(state: IdeState, action: IdeAction): IdeState {
 				run,
 				mode: "done",
 				goalCheck,
-				exercise: goalCheck?.solved
-					? { ...exercise, solved: true }
-					: exercise,
+				// A task counts as solved only from the worksheet's start.
+				exercise:
+					goalCheck?.solved && sameWorld(exercise.start, START)
+						? { ...exercise, solved: true }
+						: exercise,
 			};
 		}
 		case "pause":

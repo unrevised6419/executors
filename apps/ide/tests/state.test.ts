@@ -1,5 +1,5 @@
 import { describe, expect, test } from "vitest";
-import { TASKS } from "@repo/ant-tasks";
+import { START, TASKS } from "@repo/ant-tasks";
 import type { World } from "@repo/ant-runtime";
 import { ideReducer, initialState, type IdeState } from "@/ide/state";
 import { toolbarState } from "@/ide/toolbar-state";
@@ -107,6 +107,61 @@ describe("ideReducer", () => {
 		expect(solved.exercise.solved).toBe(true);
 		const later = ideReducer(run(solved), report("finished"));
 		expect(later.exercise.solved).toBe(true);
+	});
+
+	test("a solve from a modified start is shown but not remembered", () => {
+		const fresh = initialState(
+			newExercise({ language: "ro", taskNumber: 1 }),
+			10,
+		);
+		const goal: World = {
+			ant: { x: 5, y: 5 },
+			facing: "down",
+			objects: TASKS[0]!.goal,
+		};
+		const edited = ideReducer(fresh, {
+			type: "set-start",
+			world: { ...fresh.world, objects: [] },
+		});
+		const solved = ideReducer(run(edited), report("finished", goal));
+		expect(solved.goalCheck?.solved).toBe(true);
+		expect(solved.exercise.solved).toBe(false);
+		const restored = ideReducer(solved, {
+			type: "set-start",
+			world: START,
+		});
+		const again = ideReducer(run(restored), report("finished", goal));
+		expect(again.exercise.solved).toBe(true);
+		const turned = ideReducer(fresh, {
+			type: "set-start",
+			world: { ...START, facing: "up" },
+		});
+		expect(
+			ideReducer(run(turned), report("finished", goal)).exercise.solved,
+		).toBe(false);
+	});
+
+	test("opening a file titles a free program but not a task", () => {
+		const opened = ideReducer(free, {
+			type: "replace-content",
+			source: "x",
+			title: "mamatata",
+		});
+		expect(opened.exercise.title).toBe("mamatata");
+		const task = initialState(
+			newExercise({ language: "ro", taskNumber: 1 }),
+			10,
+		);
+		const kept = ideReducer(task, {
+			type: "replace-content",
+			source: "x",
+			title: "mamatata",
+		});
+		expect(kept.exercise.title).toBe("");
+		expect(
+			ideReducer(opened, { type: "replace-content", source: "y" })
+				.exercise.title,
+		).toBe("mamatata");
 	});
 
 	test("pause and resume switch the mode", () => {

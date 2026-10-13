@@ -19,6 +19,7 @@ export function Home() {
 	const opened = useStore();
 	const [language, setLanguage] = useState<Language>("ro");
 	const [list, setList] = useState<ExerciseSummary[]>([]);
+	const [creating, setCreating] = useState(false);
 	const router = useRouter();
 	const t = MESSAGES[language];
 	const dialogs = useDialogs(t);
@@ -27,7 +28,13 @@ export function Home() {
 	// eslint-disable-next-line react-hooks/set-state-in-effect
 	useEffect(() => setLanguage(readLanguage()), []);
 	useEffect(() => {
-		if (opened) void opened.store.list().then(setList);
+		if (opened)
+			opened.store
+				.list()
+				.then(setList)
+				.catch(() => toast.error(t.notSaved));
+		// `t` only changes the message language of an error.
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [opened]);
 
 	const solved = new Set(
@@ -36,12 +43,14 @@ export function Home() {
 	const free = list.filter((e) => e.taskNumber === undefined);
 
 	async function create() {
-		if (!opened) return;
+		if (!opened || creating) return;
+		setCreating(true);
 		const fresh = newExercise({ language, title: t.newProgram });
 		try {
 			await opened.store.save(fresh);
 		} catch {
 			toast.error(t.notSaved);
+			setCreating(false);
 			return;
 		}
 		router.push(`/ide?id=${fresh.id}`);
@@ -49,8 +58,12 @@ export function Home() {
 
 	async function remove(id: string) {
 		if (!opened || !(await dialogs.confirm(t.confirmRemove))) return;
-		await opened.store.remove(id);
-		setList(await opened.store.list());
+		try {
+			await opened.store.remove(id);
+			setList(await opened.store.list());
+		} catch {
+			toast.error(t.notSaved);
+		}
 	}
 
 	return (
@@ -84,7 +97,10 @@ export function Home() {
 			<section className="flex flex-col gap-3">
 				<div className="flex items-center justify-between">
 					<h2 className="text-xl font-semibold">{t.myPrograms}</h2>
-					<Button disabled={!opened} onClick={() => void create()}>
+					<Button
+						disabled={!opened || creating}
+						onClick={() => void create()}
+					>
 						<Plus />
 						{t.freeProgram}
 					</Button>
@@ -104,6 +120,16 @@ export function Home() {
 								>
 									{e.title || t.newProgram}
 								</Link>
+								<time
+									className="ml-auto mr-2 text-sm text-muted-foreground"
+									dateTime={new Date(
+										e.updatedAt,
+									).toISOString()}
+								>
+									{new Date(e.updatedAt).toLocaleString(
+										language,
+									)}
+								</time>
 								<Button
 									variant="ghost"
 									size="icon"

@@ -2,7 +2,7 @@ import "fake-indexeddb/auto";
 import { describe, expect, test, vi } from "vitest";
 import { INITIAL_WORLD } from "@repo/ant-runtime";
 import { START } from "@repo/ant-tasks";
-import { newExercise, type ExerciseStore } from "@/storage/exercise";
+import { newExercise, newId, type ExerciseStore } from "@/storage/exercise";
 import {
 	IndexedDbExerciseStore,
 	openExerciseStore,
@@ -19,6 +19,28 @@ test("newExercise starts tasks from the worksheet and free programs empty", () =
 	expect(newExercise({ language: "en", title: "Mine" })).toMatchObject({
 		title: "Mine",
 		start: INITIAL_WORLD,
+	});
+});
+
+const UUID_V4 =
+	/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+
+describe("newId", () => {
+	test("uses crypto.randomUUID when available", () => {
+		expect(newId()).toMatch(UUID_V4);
+	});
+
+	test("builds a v4 UUID from getRandomValues when randomUUID is missing", () => {
+		vi.stubGlobal("crypto", {
+			getRandomValues: crypto.getRandomValues.bind(crypto),
+		});
+		try {
+			const ids = new Set(Array.from({ length: 20 }, newId));
+			expect(ids.size).toBe(20);
+			for (const id of ids) expect(id).toMatch(UUID_V4);
+		} finally {
+			vi.unstubAllGlobals();
+		}
 	});
 });
 

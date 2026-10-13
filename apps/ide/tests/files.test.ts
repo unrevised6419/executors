@@ -34,6 +34,7 @@ describe("openProgramFile", () => {
 			fixture("spec-example.ant"),
 			"windows-1250",
 		);
+		expect(file.title).toBe("x");
 		expect(file.source).toBe("INCEPUT\nDREAPTA\nSFIRSIT");
 		expect(file.start?.objects).toEqual([{ x: 3, y: 1, char: "A" }]);
 	});
@@ -41,6 +42,7 @@ describe("openProgramFile", () => {
 	test("reads an .antp file as UTF-8 program text, keeping the world", () => {
 		const bytes = new TextEncoder().encode("ÎNCEPUT\r\nSUS\r\nSFÎRȘIT\r\n");
 		expect(openProgramFile("p.antp", bytes, "windows-1250")).toEqual({
+			title: "p",
 			source: "ÎNCEPUT\nSUS\nSFÎRȘIT\n",
 		});
 	});

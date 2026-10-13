@@ -1,5 +1,6 @@
 import type { GoalCheck, Task } from "@repo/ant-tasks";
 import { CheckCircle2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { Messages } from "@/i18n/messages";
 import { Grid } from "@/ide/grid/Grid";
@@ -8,10 +9,14 @@ export function TaskPanel({
 	t,
 	task,
 	check,
+	onRestoreStart,
+	disabled,
 }: {
 	t: Messages;
 	task: Task;
 	check: GoalCheck | undefined;
+	onRestoreStart: () => void;
+	disabled: boolean;
 }) {
 	return (
 		<Card>
@@ -34,6 +39,14 @@ export function TaskPanel({
 						)}
 					</p>
 				)}
+				<Button
+					variant="outline"
+					size="sm"
+					disabled={disabled}
+					onClick={onRestoreStart}
+				>
+					{t.restoreStart}
+				</Button>
 			</CardContent>
 		</Card>
 	);

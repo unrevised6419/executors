@@ -37,6 +37,7 @@ export interface Messages {
 	goal: string;
 	goalSolved: string;
 	goalProgress: (missing: number, misplaced: number) => string;
+	restoreStart: string;
 	notSaved: string;
 	confirmNew: string;
 	confirmLanguage: string;
@@ -98,6 +99,7 @@ const ro: Messages = {
 	goal: "Scopul",
 	goalSolved: "Rezolvat!",
 	goalProgress: (m, p) => `Lipsesc: ${m} · Greșit plasate: ${p}`,
+	restoreStart: "Pornește din nou de la început",
 	notSaved:
 		"Stocarea browserului nu este disponibilă: lucrul nu se salvează.",
 	confirmNew: "Începi un program nou?",
@@ -161,6 +163,7 @@ const en: Messages = {
 	goal: "Goal",
 	goalSolved: "Solved!",
 	goalProgress: (m, p) => `Missing: ${m} · Misplaced: ${p}`,
+	restoreStart: "Restore the task's start",
 	notSaved: "Browser storage is unavailable: your work is not being saved.",
 	confirmNew: "Start a new program?",
 	confirmLanguage:
@@ -223,6 +226,7 @@ const ru: Messages = {
 	goal: "Цель",
 	goalSolved: "Решено!",
 	goalProgress: (m, p) => `Не хватает: ${m} · Не на месте: ${p}`,
+	restoreStart: "Вернуть начальное поле",
 	notSaved: "Хранилище браузера недоступно: работа не сохраняется.",
 	confirmNew: "Начать новую программу?",
 	confirmLanguage:

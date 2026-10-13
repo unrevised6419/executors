@@ -10,6 +10,8 @@ export function defaultEncoding(language: Language): AntFileEncoding {
 }
 
 export interface OpenedFile {
+	/** The file name without its extension. */
+	readonly title: string;
 	readonly source: string;
 	/** Absent for program-only files, which keep the current grid. */
 	readonly start?: World;
@@ -26,11 +28,13 @@ export function openProgramFile(
 	bytes: Uint8Array,
 	encoding: AntFileEncoding,
 ): OpenedFile {
+	const title = name.replace(/\.[^./\\]*$/, "");
 	if (name.toLowerCase().endsWith(".ant")) {
 		const { world, source } = readAntFile(bytes, { encoding });
-		return { source, start: world };
+		return { title, source, start: world };
 	}
 	return {
+		title,
 		source: new TextDecoder("utf-8").decode(bytes).replace(/\r\n?/g, "\n"),
 	};
 }
