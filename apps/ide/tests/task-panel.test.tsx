@@ -34,5 +34,6 @@ test("shows solved or what is left", () => {
 			}}
 		/>,
 	);
+	expect(screen.queryByText("Solved!")).toBeNull();
 	expect(screen.getByText("Missing: 1 · Misplaced: 1")).toBeDefined();
 });
