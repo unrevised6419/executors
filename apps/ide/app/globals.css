@@ -128,3 +128,12 @@
 		@apply font-sans;
 	}
 }
+
+/* The statement being run, in the editor. */
+.furnica-current {
+	background: color-mix(in oklab, var(--primary) 25%, transparent);
+	border-radius: 2px;
+}
+.furnica-current-line {
+	background: color-mix(in oklab, var(--primary) 8%, transparent);
+}
