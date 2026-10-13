@@ -1,11 +1,11 @@
-# @executors/grammar
+# @executors/grammar-ant
 
 Lexer, parser and static checker for the Furnica (ant) language, with syntax highlighting for the Monaco editor.
 
 The language keeps the structure of the original 2000 program (see [`../spec-ant`](../spec-ant/furnica-language-spec.md)) but **none of its bugs**. Where this package differs from the original, the original was wrong; spec-ant §9 lists every such case.
 
 ```ts
-import { parse, formatMessage, KEYWORD_SETS } from "@executors/grammar";
+import { parse, formatMessage, KEYWORD_SETS } from "@executors/grammar-ant";
 
 const { program, diagnostics } = parse(source, { language: "ro" });
 for (const d of diagnostics)
