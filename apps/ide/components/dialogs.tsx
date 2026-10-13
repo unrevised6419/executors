@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -24,29 +24,36 @@ interface Pending {
 /** Promise-based confirm and alert dialogs; render `element` once. */
 export function useDialogs(t: Messages) {
 	const [pending, setPending] = useState<Pending | null>(null);
+	const current = useRef<Pending | null>(null);
+
+	/** Resolves the dialog on screen with false, then shows `next`. */
+	const show = useCallback((next: Pending) => {
+		current.current?.resolve(false);
+		current.current = next;
+		setPending(next);
+	}, []);
 
 	const confirm = useCallback(
 		(title: string, body?: string, action?: string) =>
 			new Promise<boolean>((resolve) =>
-				setPending({ kind: "confirm", title, body, action, resolve }),
+				show({ kind: "confirm", title, body, action, resolve }),
 			),
-		[],
+		[show],
 	);
 	const alert = useCallback(
 		(title: string, body?: string) =>
 			new Promise<void>((resolve) =>
-				setPending({
-					kind: "alert",
-					title,
-					body,
-					resolve: () => resolve(),
-				}),
+				show({ kind: "alert", title, body, resolve: () => resolve() }),
 			),
-		[],
+		[show],
 	);
 
+	/** Resolves the dialog on screen at most once. */
 	const close = (ok: boolean) => {
-		pending?.resolve(ok);
+		const done = current.current;
+		if (!done) return;
+		current.current = null;
+		done.resolve(ok);
 		setPending(null);
 	};
 

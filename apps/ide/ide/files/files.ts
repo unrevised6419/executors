@@ -59,6 +59,9 @@ export function downloadBytes(bytes: Uint8Array, name: string): void {
 	const a = document.createElement("a");
 	a.href = url;
 	a.download = name;
+	document.body.appendChild(a);
 	a.click();
-	setTimeout(() => URL.revokeObjectURL(url), 0);
+	a.remove();
+	// Some browsers start the download asynchronously, so keep the URL a while.
+	setTimeout(() => URL.revokeObjectURL(url), 30_000);
 }

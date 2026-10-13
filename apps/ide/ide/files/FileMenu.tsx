@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { FileText } from "lucide-react";
 import {
 	AntFileError,
+	formatAntFile,
 	writeAntFile,
 	type AntFileEncoding,
 } from "@repo/ant-file";
@@ -28,6 +29,10 @@ import {
 	saveFileName,
 	type OpenedFile,
 } from "./files";
+
+function errorMessage(error: unknown): string {
+	return error instanceof Error ? error.message : String(error);
+}
 
 const ENCODINGS: readonly AntFileEncoding[] = [
 	"windows-1250",
@@ -68,8 +73,10 @@ export function FileMenu({
 				),
 			);
 		} catch (error) {
-			if (!(error instanceof AntFileError)) throw error;
-			await dialogs.alert(t.openFailed, error.message);
+			await dialogs.alert(
+				t.openFailed,
+				error instanceof AntFileError ? error.message : String(error),
+			);
 		}
 	}
 
@@ -77,13 +84,32 @@ export function FileMenu({
 		const name = saveFileName(exercise, t);
 		const file = { world: exercise.start, source: exercise.source };
 		try {
+			// Rejects an invalid world before any encoding is tried.
+			formatAntFile(file);
+		} catch (error) {
+			await dialogs.alert(errorMessage(error));
+			return;
+		}
+		try {
 			downloadBytes(writeAntFile(file, { encoding }), name);
 		} catch (error) {
-			if (!(error instanceof RangeError)) throw error;
+			if (!(error instanceof RangeError) || encoding === "utf-8") {
+				await dialogs.alert(errorMessage(error));
+				return;
+			}
 			if (
-				await dialogs.confirm(t.cannotEncode, error.message, t.saveUtf8)
+				!(await dialogs.confirm(
+					t.cannotEncode,
+					error.message,
+					t.saveUtf8,
+				))
 			)
+				return;
+			try {
 				downloadBytes(writeAntFile(file, { encoding: "utf-8" }), name);
+			} catch (retryError) {
+				await dialogs.alert(errorMessage(retryError));
+			}
 		}
 	}
 
