@@ -1,36 +1,18 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# @repo/ide
 
-## Getting Started
+Web IDE for the Furnica (ant) language. Write a program, set up the 10 × 10 grid, watch the ant run, open and save the original `.ant` files, and solve the 24 tasks of the "Sarcina Furnica" worksheet.
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```sh
+pnpm --filter @repo/ide dev      # http://localhost:3000
+pnpm --filter @repo/ide test     # unit and component tests (Vitest)
+pnpm --filter @repo/ide e2e      # end-to-end tests (Playwright)
+pnpm --filter @repo/ide build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Editor:** Monaco, bundled locally, with highlighting and errors from [`@repo/ant-grammar`](../../packages/ant-grammar).
+- **Runs:** [`@repo/ant-runtime`](../../packages/ant-runtime), stepped by `ide/run/run-controller.ts` at the original's speed scale (200 − 10 · position ms).
+- **Files:** [`@repo/ant-file`](../../packages/ant-file). `.ant` files are read and written in windows-1250, or in windows-1251 for Russian. Other files are read as UTF-8 program text.
+- **Tasks:** [`@repo/ant-tasks`](../../packages/ant-tasks). Each task's goal is checked after every run.
+- **Saving:** exercises are saved in IndexedDB through the `ExerciseStore` interface (`storage/exercise.ts`). A cloud store can replace it later without changing the UI.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The design is in [`docs/superpowers/specs/2026-10-13-ide-design.md`](../../docs/superpowers/specs/2026-10-13-ide-design.md).
