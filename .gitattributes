@@ -1,0 +1,2 @@
+# .ant files are windows-125x text with CRLF line endings; keep their bytes as is.
+*.ant binary
