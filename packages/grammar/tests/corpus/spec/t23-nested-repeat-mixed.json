@@ -1,0 +1,21 @@
+{
+	"description": "Nested REPEAT between other statements.",
+	"language": "ro",
+	"spec": "§11 T23",
+	"ast": {
+		"procedures": [],
+		"body": [
+			{
+				"repeat": 2,
+				"body": [
+					"right",
+					{
+						"repeat": 2,
+						"body": ["down"]
+					},
+					"right"
+				]
+			}
+		]
+	}
+}

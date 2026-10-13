@@ -1,0 +1,14 @@
+{
+	"description": "The count is required (§3.3).",
+	"language": "ro",
+	"spec": "§3.3",
+	"errors": [
+		{
+			"code": "unexpected",
+			"line": 2,
+			"column": 8,
+			"expected": ["number"],
+			"found": "TIMES"
+		}
+	]
+}

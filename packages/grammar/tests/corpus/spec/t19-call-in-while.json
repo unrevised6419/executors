@@ -1,0 +1,23 @@
+{
+	"description": "A call inside WHILE (never ran in the original, §9 #7).",
+	"language": "ro",
+	"spec": "§11 T19",
+	"ast": {
+		"procedures": [
+			{
+				"name": "P",
+				"body": ["right"]
+			}
+		],
+		"body": [
+			{
+				"while": "notAtEdge",
+				"body": [
+					{
+						"call": "P"
+					}
+				]
+			}
+		]
+	}
+}

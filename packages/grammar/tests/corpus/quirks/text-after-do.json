@@ -1,0 +1,13 @@
+{
+	"description": "Nothing may follow DO (§4.5).",
+	"language": "ro",
+	"spec": "§4.5",
+	"errors": [
+		{
+			"code": "trailing-text",
+			"line": 2,
+			"column": 26,
+			"text": "SUS"
+		}
+	]
+}

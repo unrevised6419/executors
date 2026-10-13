@@ -1,0 +1,14 @@
+{
+	"description": "Keywords are reserved (§9 #20).",
+	"language": "ro",
+	"spec": "§11 T20",
+	"errors": [
+		{
+			"code": "reserved-word",
+			"line": 1,
+			"column": 11,
+			"role": "UP",
+			"text": "SUS"
+		}
+	]
+}

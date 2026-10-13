@@ -1,0 +1,11 @@
+{
+	"description": "Only the program's language counts: English keywords are names in a Romanian program.",
+	"language": "ro",
+	"errors": [
+		{
+			"code": "missing-begin",
+			"line": 1,
+			"column": 1
+		}
+	]
+}

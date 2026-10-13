@@ -1,0 +1,8 @@
+{
+	"description": "Lines holding only spaces or tabs are blank.",
+	"language": "ro",
+	"ast": {
+		"procedures": [],
+		"body": ["right"]
+	}
+}

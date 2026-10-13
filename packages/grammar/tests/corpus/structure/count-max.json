@@ -1,0 +1,14 @@
+{
+	"description": "The largest count.",
+	"language": "ro",
+	"spec": "§6",
+	"ast": {
+		"procedures": [],
+		"body": [
+			{
+				"repeat": 2147483647,
+				"body": []
+			}
+		]
+	}
+}

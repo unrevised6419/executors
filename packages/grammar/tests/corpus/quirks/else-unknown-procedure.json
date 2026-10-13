@@ -1,0 +1,13 @@
+{
+	"description": "The ELSE branch is checked (§9 #15).",
+	"language": "ro",
+	"spec": "§4.6",
+	"errors": [
+		{
+			"code": "undefined-procedure",
+			"line": 2,
+			"column": 34,
+			"name": "FOO"
+		}
+	]
+}

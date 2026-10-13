@@ -1,0 +1,20 @@
+{
+	"description": "Names may use any letters; they match ignoring case and diacritics.",
+	"language": "ro",
+	"ast": {
+		"procedures": [
+			{
+				"name": "Față",
+				"body": ["right"]
+			}
+		],
+		"body": [
+			{
+				"call": "fata"
+			},
+			{
+				"call": "FAȚA"
+			}
+		]
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"description": "Procedures but no main program.",
+	"language": "ro",
+	"errors": [
+		{
+			"code": "missing-begin",
+			"line": 3,
+			"column": 18
+		}
+	]
+}

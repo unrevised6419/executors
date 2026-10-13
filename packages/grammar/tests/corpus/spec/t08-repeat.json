@@ -1,0 +1,14 @@
+{
+	"description": "REPEAT.",
+	"language": "ro",
+	"spec": "§11 T8",
+	"ast": {
+		"procedures": [],
+		"body": [
+			{
+				"repeat": 3,
+				"body": ["right"]
+			}
+		]
+	}
+}

@@ -1,0 +1,13 @@
+{
+	"description": "A name is one word.",
+	"language": "ro",
+	"spec": "§4.3",
+	"errors": [
+		{
+			"code": "trailing-text",
+			"line": 1,
+			"column": 17,
+			"text": "LA"
+		}
+	]
+}

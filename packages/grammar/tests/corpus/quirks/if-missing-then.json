@@ -1,0 +1,14 @@
+{
+	"description": "THEN is required.",
+	"language": "ro",
+	"spec": "§4.6",
+	"errors": [
+		{
+			"code": "unexpected",
+			"line": 2,
+			"column": 16,
+			"expected": ["THEN"],
+			"found": "UP"
+		}
+	]
+}

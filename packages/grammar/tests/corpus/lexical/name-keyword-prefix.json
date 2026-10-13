@@ -1,0 +1,17 @@
+{
+	"description": "A name may start with a keyword.",
+	"language": "ro",
+	"ast": {
+		"procedures": [
+			{
+				"name": "SUSUL",
+				"body": ["up"]
+			}
+		],
+		"body": [
+			{
+				"call": "SUSUL"
+			}
+		]
+	}
+}

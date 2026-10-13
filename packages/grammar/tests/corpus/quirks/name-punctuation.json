@@ -1,0 +1,19 @@
+{
+	"description": "Names are letters, digits and _ (§3.3).",
+	"language": "ro",
+	"spec": "§3.3",
+	"errors": [
+		{
+			"code": "invalid-character",
+			"line": 1,
+			"column": 12,
+			"text": "."
+		},
+		{
+			"code": "trailing-text",
+			"line": 1,
+			"column": 13,
+			"text": "B"
+		}
+	]
+}

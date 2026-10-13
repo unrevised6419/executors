@@ -1,0 +1,25 @@
+{
+	"description": "A procedure may call itself.",
+	"language": "ro",
+	"ast": {
+		"procedures": [
+			{
+				"name": "P",
+				"body": [
+					"right",
+					{
+						"if": "notAtEdge",
+						"then": {
+							"call": "P"
+						}
+					}
+				]
+			}
+		],
+		"body": [
+			{
+				"call": "P"
+			}
+		]
+	}
+}

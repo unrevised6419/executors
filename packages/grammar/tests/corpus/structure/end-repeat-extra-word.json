@@ -1,0 +1,12 @@
+{
+	"description": "End markers stand alone.",
+	"language": "ro",
+	"errors": [
+		{
+			"code": "trailing-text",
+			"line": 3,
+			"column": 16,
+			"text": "ACUM"
+		}
+	]
+}

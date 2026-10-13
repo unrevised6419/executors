@@ -1,0 +1,13 @@
+{
+	"description": "Leading zeros are allowed.",
+	"language": "ro",
+	"ast": {
+		"procedures": [],
+		"body": [
+			{
+				"repeat": 7,
+				"body": ["right"]
+			}
+		]
+	}
+}

@@ -1,0 +1,13 @@
+{
+	"description": "A word in place of ELSE (§9 #15).",
+	"language": "ro",
+	"spec": "§4.6",
+	"errors": [
+		{
+			"code": "trailing-text",
+			"line": 2,
+			"column": 27,
+			"text": "JOS"
+		}
+	]
+}

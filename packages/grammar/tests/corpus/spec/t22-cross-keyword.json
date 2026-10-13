@@ -1,0 +1,14 @@
+{
+	"description": "Cross-keyword line (accepted by the original, §9 #19).",
+	"language": "ro",
+	"spec": "§11 T22",
+	"errors": [
+		{
+			"code": "unexpected",
+			"line": 2,
+			"column": 10,
+			"expected": ["TIMES"],
+			"found": "IF"
+		}
+	]
+}

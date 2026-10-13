@@ -1,0 +1,12 @@
+{
+	"description": "Procedures go before BEGIN (§4.5).",
+	"language": "ro",
+	"spec": "§4.5",
+	"errors": [
+		{
+			"code": "misplaced-procedure",
+			"line": 2,
+			"column": 1
+		}
+	]
+}

@@ -1,0 +1,21 @@
+{
+	"description": "Procedure definition and calls.",
+	"language": "ro",
+	"spec": "§11 T14",
+	"ast": {
+		"procedures": [
+			{
+				"name": "P",
+				"body": ["right"]
+			}
+		],
+		"body": [
+			{
+				"call": "P"
+			},
+			{
+				"call": "P"
+			}
+		]
+	}
+}

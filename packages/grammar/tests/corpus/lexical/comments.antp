@@ -1,0 +1,9 @@
+// Program de test
+PROCEDURA P // un pas
+DREAPTA
+SFIRSIT PROCEDURA
+INCEPUT // start
+  // in corp
+P
+SFIRSIT // gata
+// dupa

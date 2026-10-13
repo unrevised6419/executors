@@ -1,0 +1,13 @@
+{
+	"description": "There is no call keyword: a call is the bare name.",
+	"language": "ro",
+	"spec": "§11 T16",
+	"errors": [
+		{
+			"code": "invalid-statement",
+			"line": 5,
+			"column": 1,
+			"text": "EXECUTA"
+		}
+	]
+}

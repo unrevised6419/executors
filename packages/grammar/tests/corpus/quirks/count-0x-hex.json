@@ -1,0 +1,15 @@
+{
+	"description": "0x hex counts are not numbers here (§3.3).",
+	"language": "ro",
+	"spec": "§3.3",
+	"errors": [
+		{
+			"code": "unexpected",
+			"line": 2,
+			"column": 8,
+			"expected": ["number"],
+			"found": "name",
+			"text": "0x1F"
+		}
+	]
+}

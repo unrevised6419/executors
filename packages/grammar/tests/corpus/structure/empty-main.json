@@ -1,0 +1,8 @@
+{
+	"description": "An empty main program.",
+	"language": "ro",
+	"ast": {
+		"procedures": [],
+		"body": []
+	}
+}

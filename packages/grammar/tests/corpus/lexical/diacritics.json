@@ -1,0 +1,8 @@
+{
+	"description": "Diacritics are ignored: ÎNCEPUT = INCEPUT, SFÎRȘIT = SFIRSIT.",
+	"language": "ro",
+	"ast": {
+		"procedures": [],
+		"body": ["right"]
+	}
+}

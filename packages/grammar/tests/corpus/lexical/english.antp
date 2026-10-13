@@ -1,0 +1,12 @@
+PROCEDURE step
+right
+END PROCEDURE
+begin
+repeat 2 times
+step
+end repeat
+while not_at_edge do
+down
+end while
+if at_edge then up else left
+end

@@ -1,0 +1,9 @@
+{
+	"description": "CRLF line endings.",
+	"language": "ro",
+	"spec": "§7",
+	"ast": {
+		"procedures": [],
+		"body": ["right"]
+	}
+}

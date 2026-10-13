@@ -1,0 +1,12 @@
+{
+	"description": "Nothing may follow END (the original ran the next line, §9 #1).",
+	"language": "ro",
+	"spec": "§11 T17",
+	"errors": [
+		{
+			"code": "code-after-end",
+			"line": 3,
+			"column": 1
+		}
+	]
+}

@@ -1,0 +1,19 @@
+{
+	"description": "REPEAT directly inside REPEAT (broken in the original, §9 #5).",
+	"language": "ro",
+	"spec": "§11 T9",
+	"ast": {
+		"procedures": [],
+		"body": [
+			{
+				"repeat": 2,
+				"body": [
+					{
+						"repeat": 2,
+						"body": ["right"]
+					}
+				]
+			}
+		]
+	}
+}

@@ -1,0 +1,8 @@
+{
+	"description": "Decomposed diacritics (NFD) match too.",
+	"language": "ro",
+	"ast": {
+		"procedures": [],
+		"body": ["right"]
+	}
+}

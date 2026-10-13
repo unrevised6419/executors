@@ -1,0 +1,13 @@
+{
+	"description": "Counts are 32-bit.",
+	"language": "ro",
+	"spec": "§6",
+	"errors": [
+		{
+			"code": "count-too-large",
+			"line": 2,
+			"column": 8,
+			"text": "2147483648"
+		}
+	]
+}

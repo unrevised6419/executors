@@ -1,0 +1,13 @@
+{
+	"description": "Nothing may follow TIMES (§4.5).",
+	"language": "ro",
+	"spec": "§4.5",
+	"errors": [
+		{
+			"code": "trailing-text",
+			"line": 2,
+			"column": 14,
+			"text": "DREAPTA"
+		}
+	]
+}

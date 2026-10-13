@@ -1,0 +1,17 @@
+{
+	"description": "An empty procedure.",
+	"language": "ro",
+	"ast": {
+		"procedures": [
+			{
+				"name": "P",
+				"body": []
+			}
+		],
+		"body": [
+			{
+				"call": "P"
+			}
+		]
+	}
+}

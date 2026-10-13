@@ -1,0 +1,13 @@
+{
+	"description": "ELSE is optional.",
+	"language": "ro",
+	"ast": {
+		"procedures": [],
+		"body": [
+			{
+				"if": "notAtEdge",
+				"then": "right"
+			}
+		]
+	}
+}

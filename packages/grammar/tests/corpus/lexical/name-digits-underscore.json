@@ -1,0 +1,17 @@
+{
+	"description": "Letters, digits and _ after the first letter.",
+	"language": "ro",
+	"ast": {
+		"procedures": [
+			{
+				"name": "PAS_2",
+				"body": ["right"]
+			}
+		],
+		"body": [
+			{
+				"call": "pas_2"
+			}
+		]
+	}
+}

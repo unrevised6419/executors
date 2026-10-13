@@ -1,0 +1,13 @@
+{
+	"description": "One statement per line.",
+	"language": "ro",
+	"spec": "§3.3",
+	"errors": [
+		{
+			"code": "trailing-text",
+			"line": 2,
+			"column": 5,
+			"text": "JOS"
+		}
+	]
+}

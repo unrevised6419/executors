@@ -1,0 +1,14 @@
+{
+	"description": "Unbalanced REPEAT.",
+	"language": "ro",
+	"spec": "§8 C1",
+	"errors": [
+		{
+			"code": "mismatched-end",
+			"line": 4,
+			"column": 1,
+			"block": "repeat",
+			"text": "SFIRSIT"
+		}
+	]
+}

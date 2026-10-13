@@ -1,0 +1,13 @@
+{
+	"description": "No END (§9 #12).",
+	"language": "ro",
+	"spec": "§9 #12",
+	"errors": [
+		{
+			"code": "missing-end",
+			"line": 2,
+			"column": 8,
+			"block": "program"
+		}
+	]
+}

@@ -1,0 +1,9 @@
+{
+	"description": "One move.",
+	"language": "ro",
+	"spec": "§11 T1",
+	"ast": {
+		"procedures": [],
+		"body": ["right"]
+	}
+}

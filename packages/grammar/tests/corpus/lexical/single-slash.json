@@ -1,0 +1,18 @@
+{
+	"description": "A single slash is not a comment.",
+	"language": "ro",
+	"errors": [
+		{
+			"code": "invalid-character",
+			"line": 2,
+			"column": 9,
+			"text": "/"
+		},
+		{
+			"code": "trailing-text",
+			"line": 2,
+			"column": 11,
+			"text": "pas"
+		}
+	]
+}

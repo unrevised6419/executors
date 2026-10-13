@@ -1,0 +1,20 @@
+{
+	"description": "WHILE directly inside WHILE (broken in the original, §9 #6).",
+	"language": "ro",
+	"spec": "§9 #6",
+	"ast": {
+		"procedures": [],
+		"body": [
+			{
+				"while": "notAtEdge",
+				"body": [
+					{
+						"while": "notAtEdge",
+						"body": ["right"]
+					},
+					"down"
+				]
+			}
+		]
+	}
+}

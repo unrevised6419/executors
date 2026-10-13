@@ -1,0 +1,14 @@
+{
+	"description": "A lone END REPEAT (§4.5).",
+	"language": "ro",
+	"spec": "§4.5",
+	"errors": [
+		{
+			"code": "mismatched-end",
+			"line": 3,
+			"column": 1,
+			"block": "program",
+			"text": "SFIRSIT REPETA"
+		}
+	]
+}

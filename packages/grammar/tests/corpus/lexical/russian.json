@@ -1,0 +1,31 @@
+{
+	"description": "Russian keywords, any case.",
+	"language": "ru",
+	"ast": {
+		"procedures": [
+			{
+				"name": "Шаг",
+				"body": ["right"]
+			}
+		],
+		"body": [
+			{
+				"repeat": 2,
+				"body": [
+					{
+						"call": "шаг"
+					}
+				]
+			},
+			{
+				"while": "notAtEdge",
+				"body": ["down"]
+			},
+			{
+				"if": "atEdge",
+				"then": "up",
+				"else": "left"
+			}
+		]
+	}
+}
