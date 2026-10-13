@@ -7,4 +7,9 @@ engineStrict: true
 strictPeerDependencies: true
 
 packages:
+    - apps/*
     - packages/*
+
+allowBuilds:
+    sharp: false
+    unrs-resolver: false
