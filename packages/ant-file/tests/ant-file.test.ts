@@ -31,6 +31,22 @@ describe("readAntFile", () => {
 		});
 	});
 
+	test("reads the start position of a school worksheet", () => {
+		// "Sarcina Furnica": MAMATATA in row 2, to be pushed into 24 layouts.
+		const { world } = readAntFile(fixture("mamatata.ant"));
+		expect(world.ant).toEqual({ x: 1, y: 1 });
+		expect(world.objects.map((o) => `${o.x},${o.y} ${o.char}`)).toEqual([
+			"2,2 m",
+			"3,2 a",
+			"4,2 m",
+			"5,2 a",
+			"6,2 t",
+			"7,2 a",
+			"8,2 t",
+			"9,2 a",
+		]);
+	});
+
 	test("decodes windows-1250 by default", () => {
 		const { world, source } = readAntFile(fixture("romanian.ant"));
 		expect(world).toEqual({
@@ -196,6 +212,7 @@ describe("writeAntFile", () => {
 	test("writes the fixtures byte for byte", () => {
 		for (const [name, encoding] of [
 			["spec-example.ant", "windows-1250"],
+			["mamatata.ant", "windows-1250"],
 			["romanian.ant", "windows-1250"],
 			["russian.ant", "windows-1251"],
 		] as const) {
