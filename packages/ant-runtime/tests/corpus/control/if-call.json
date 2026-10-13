@@ -1,0 +1,8 @@
+{
+	"description": "An IF branch can call a procedure.",
+	"language": "ro",
+	"end": {
+		"facing": "right",
+		"grid": [".@"]
+	}
+}

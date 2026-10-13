@@ -1,0 +1,8 @@
+{
+	"description": "A recursive procedure walks to the wall.",
+	"language": "ro",
+	"end": {
+		"facing": "right",
+		"grid": [".........@"]
+	}
+}

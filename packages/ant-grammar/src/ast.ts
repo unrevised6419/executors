@@ -59,6 +59,8 @@ export interface Repeat {
 	readonly kind: "repeat";
 	readonly count: number;
 	readonly countRange: Range;
+	/** The `REPEAT n TIMES` line. */
+	readonly header: Range;
 	readonly body: readonly Statement[];
 	readonly range: Range;
 }
@@ -67,6 +69,8 @@ export interface Repeat {
 export interface While {
 	readonly kind: "while";
 	readonly condition: Condition;
+	/** The `WHILE cond DO` line. */
+	readonly header: Range;
 	readonly body: readonly Statement[];
 	readonly range: Range;
 }
@@ -77,6 +81,8 @@ export type Statement = Move | Call | If | Repeat | While;
 export interface Procedure {
 	readonly kind: "procedure";
 	readonly name: Name;
+	/** The `PROC name` line. */
+	readonly header: Range;
 	readonly body: readonly Statement[];
 	readonly range: Range;
 }

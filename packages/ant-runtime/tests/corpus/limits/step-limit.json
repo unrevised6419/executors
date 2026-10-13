@@ -1,0 +1,18 @@
+{
+	"description": "The run fails when it reaches the step limit.",
+	"language": "ro",
+	"options": {
+		"maxSteps": 100
+	},
+	"end": {
+		"facing": "right",
+		"grid": [".@"]
+	},
+	"error": {
+		"code": "step-limit",
+		"line": 4,
+		"column": 1,
+		"limit": 100
+	},
+	"steps": 100
+}

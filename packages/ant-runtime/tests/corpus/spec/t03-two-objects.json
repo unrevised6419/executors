@@ -1,0 +1,28 @@
+{
+	"description": "Two objects in a row cannot be pushed; the ant still turns.",
+	"language": "ro",
+	"spec": "§11 T3",
+	"start": {
+		"facing": "down",
+		"grid": ["@AB"]
+	},
+	"end": {
+		"facing": "right",
+		"grid": ["@AB"]
+	},
+	"error": {
+		"code": "push-blocked",
+		"line": 2,
+		"column": 1,
+		"object": {
+			"x": 2,
+			"y": 1,
+			"char": "A"
+		},
+		"blocker": {
+			"x": 3,
+			"y": 1,
+			"char": "B"
+		}
+	}
+}

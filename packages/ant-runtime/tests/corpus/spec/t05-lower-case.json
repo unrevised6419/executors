@@ -1,0 +1,9 @@
+{
+	"description": "Keywords in lower case.",
+	"language": "ro",
+	"spec": "§11 T5",
+	"end": {
+		"facing": "right",
+		"grid": [".@"]
+	}
+}

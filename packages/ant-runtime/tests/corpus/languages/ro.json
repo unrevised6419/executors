@@ -1,0 +1,9 @@
+{
+	"description": "The spec's overview example.",
+	"language": "ro",
+	"spec": "§1",
+	"end": {
+		"facing": "up",
+		"grid": ["", "", ".........@"]
+	}
+}

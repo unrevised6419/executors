@@ -1,0 +1,9 @@
+{
+	"description": "A procedure called twice.",
+	"language": "ro",
+	"spec": "§11 T14",
+	"end": {
+		"facing": "right",
+		"grid": ["..@"]
+	}
+}

@@ -1,0 +1,22 @@
+{
+	"description": "An object cannot be pushed off the grid.",
+	"language": "ro",
+	"start": {
+		"facing": "down",
+		"grid": ["........@A"]
+	},
+	"end": {
+		"facing": "right",
+		"grid": ["........@A"]
+	},
+	"error": {
+		"code": "push-off-grid",
+		"line": 2,
+		"column": 1,
+		"object": {
+			"x": 10,
+			"y": 1,
+			"char": "A"
+		}
+	}
+}

@@ -51,6 +51,10 @@ describe("ranges", () => {
 			start: { line: 2, column: 10, offset: 17 },
 			end: { line: 2, column: 12, offset: 19 },
 		});
+		expect(repeat.kind === "repeat" && repeat.header).toEqual({
+			start: { line: 2, column: 3, offset: 10 },
+			end: { line: 2, column: 16, offset: 23 },
+		});
 	});
 });
 

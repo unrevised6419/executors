@@ -1,0 +1,10 @@
+{
+	"description": "REPEAT runs its body n times.",
+	"language": "ro",
+	"spec": "§11 T8",
+	"end": {
+		"facing": "right",
+		"grid": ["...@"]
+	},
+	"steps": 4
+}

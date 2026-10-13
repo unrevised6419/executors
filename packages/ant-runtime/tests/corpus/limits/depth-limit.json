@@ -1,0 +1,15 @@
+{
+	"description": "Endless recursion reaches the default depth limit of 1000.",
+	"language": "ro",
+	"end": {
+		"facing": "down",
+		"grid": ["@"]
+	},
+	"error": {
+		"code": "depth-limit",
+		"line": 2,
+		"column": 2,
+		"limit": 1000
+	},
+	"steps": 1001
+}

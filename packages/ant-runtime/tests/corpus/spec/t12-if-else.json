@@ -1,0 +1,9 @@
+{
+	"description": "IF facing right tests the right edge.",
+	"language": "ro",
+	"spec": "§11 T12",
+	"end": {
+		"facing": "down",
+		"grid": ["", ".@"]
+	}
+}

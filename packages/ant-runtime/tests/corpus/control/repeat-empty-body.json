@@ -1,0 +1,9 @@
+{
+	"description": "A huge REPEAT with an empty body is one step.",
+	"language": "ro",
+	"end": {
+		"facing": "down",
+		"grid": ["@"]
+	},
+	"steps": 1
+}

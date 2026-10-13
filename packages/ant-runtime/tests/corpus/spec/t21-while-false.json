@@ -1,0 +1,14 @@
+{
+	"description": "A WHILE whose condition is false at once does nothing.",
+	"language": "ro",
+	"spec": "§11 T21",
+	"start": {
+		"facing": "down",
+		"grid": ["", "", "", "", "", "", "", "", "", "@"]
+	},
+	"end": {
+		"facing": "down",
+		"grid": ["", "", "", "", "", "", "", "", "", "@"]
+	},
+	"steps": 1
+}

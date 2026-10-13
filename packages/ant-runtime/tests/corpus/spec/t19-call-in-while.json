@@ -1,0 +1,9 @@
+{
+	"description": "A procedure call inside WHILE runs.",
+	"language": "ro",
+	"spec": "§11 T19",
+	"end": {
+		"facing": "right",
+		"grid": [".........@"]
+	}
+}

@@ -1,0 +1,8 @@
+{
+	"description": "The spec's overview example in English.",
+	"language": "en",
+	"end": {
+		"facing": "up",
+		"grid": ["", "", ".........@"]
+	}
+}

@@ -1,0 +1,8 @@
+{
+	"description": "A false IF without ELSE does nothing.",
+	"language": "ro",
+	"end": {
+		"facing": "down",
+		"grid": ["", "@"]
+	}
+}

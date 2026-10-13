@@ -1,0 +1,8 @@
+{
+	"description": "A procedure may call one defined after it.",
+	"language": "ro",
+	"end": {
+		"facing": "down",
+		"grid": ["", "", "@"]
+	}
+}

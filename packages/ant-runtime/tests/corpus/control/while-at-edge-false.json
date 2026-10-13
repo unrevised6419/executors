@@ -1,0 +1,9 @@
+{
+	"description": "WHILE tests before the first pass.",
+	"language": "ro",
+	"end": {
+		"facing": "down",
+		"grid": ["@"]
+	},
+	"steps": 1
+}

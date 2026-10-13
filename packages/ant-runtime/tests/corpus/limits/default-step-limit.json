@@ -1,0 +1,19 @@
+{
+	"description": "The default step limit is 100000.",
+	"language": "ro",
+	"start": {
+		"facing": "down",
+		"grid": ["", "", "", "", "....@"]
+	},
+	"end": {
+		"facing": "left",
+		"grid": ["", "", "", "", "....@"]
+	},
+	"error": {
+		"code": "step-limit",
+		"line": 3,
+		"column": 1,
+		"limit": 100000
+	},
+	"steps": 100000
+}

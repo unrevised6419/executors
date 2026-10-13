@@ -1,0 +1,18 @@
+{
+	"description": "Facing right at X=1 is not at the edge, so the ELSE branch runs.",
+	"language": "ro",
+	"spec": "§11 T13",
+	"start": {
+		"facing": "right",
+		"grid": ["@"]
+	},
+	"end": {
+		"facing": "up",
+		"grid": ["@"]
+	},
+	"error": {
+		"code": "wall",
+		"line": 2,
+		"column": 34
+	}
+}

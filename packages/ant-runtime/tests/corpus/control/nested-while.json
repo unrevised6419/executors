@@ -1,0 +1,8 @@
+{
+	"description": "WHILE directly inside WHILE works.",
+	"language": "ro",
+	"end": {
+		"facing": "right",
+		"grid": ["", ".........@"]
+	}
+}

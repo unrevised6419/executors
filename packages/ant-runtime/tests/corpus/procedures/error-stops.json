@@ -1,0 +1,13 @@
+{
+	"description": "An error inside a procedure stops the whole program.",
+	"language": "ro",
+	"end": {
+		"facing": "up",
+		"grid": ["@"]
+	},
+	"error": {
+		"code": "wall",
+		"line": 2,
+		"column": 2
+	}
+}

@@ -141,6 +141,7 @@ class FurnicaParser extends EmbeddedActionsParser {
 		return {
 			kind: "procedure",
 			name: { text: name.image, range: tokenRange(name) },
+			header: tokenRange(proc, name),
 			body,
 			range: tokenRange(proc, close),
 		};
@@ -254,7 +255,7 @@ class FurnicaParser extends EmbeddedActionsParser {
 	private readonly repeat = this.RULE("repeat", (): Repeat => {
 		const head = this.CONSUME(Keyword.REPEAT);
 		const count = this.CONSUME(NumberLiteral);
-		this.CONSUME(Keyword.TIMES);
+		const times = this.CONSUME(Keyword.TIMES);
 		this.CONSUME(Newline);
 		const body = this.SUBRULE(this.block);
 		this.CONSUME(Keyword.END);
@@ -263,6 +264,7 @@ class FurnicaParser extends EmbeddedActionsParser {
 			kind: "repeat",
 			count: Number(count.image),
 			countRange: tokenRange(count),
+			header: tokenRange(head, times),
 			body,
 			range: tokenRange(head, close),
 		};
@@ -271,7 +273,7 @@ class FurnicaParser extends EmbeddedActionsParser {
 	private readonly whileStatement = this.RULE("while", (): While => {
 		const head = this.CONSUME(Keyword.WHILE);
 		const condition = this.SUBRULE(this.condition);
-		this.CONSUME(Keyword.DO);
+		const doToken = this.CONSUME(Keyword.DO);
 		this.CONSUME(Newline);
 		const body = this.SUBRULE(this.block);
 		this.CONSUME(Keyword.END);
@@ -279,6 +281,7 @@ class FurnicaParser extends EmbeddedActionsParser {
 		return {
 			kind: "while",
 			condition,
+			header: tokenRange(head, doToken),
 			body,
 			range: tokenRange(head, close),
 		};

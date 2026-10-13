@@ -1,0 +1,25 @@
+export {
+	DEFAULT_MAX_DEPTH,
+	DEFAULT_MAX_STEPS,
+	Run,
+	runProgram,
+	type Push,
+	type RunOptions,
+	type RunResult,
+	type RunStatus,
+	type RuntimeError,
+	type RuntimeErrorCode,
+	type StackEntry,
+	type Step,
+} from "./runtime.ts";
+export {
+	atEdge,
+	checkWorld,
+	GRID_SIZE,
+	INITIAL_WORLD,
+	isObjectChar,
+	type GridObject,
+	type Point,
+	type World,
+	type WorldProblem,
+} from "./world.ts";

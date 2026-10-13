@@ -1,0 +1,13 @@
+{
+	"description": "An error inside a loop stops the program.",
+	"language": "ro",
+	"end": {
+		"facing": "down",
+		"grid": ["", "", "", "", "", "", "", "", "", ".@"]
+	},
+	"error": {
+		"code": "wall",
+		"line": 4,
+		"column": 1
+	}
+}

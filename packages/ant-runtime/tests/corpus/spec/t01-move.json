@@ -1,0 +1,10 @@
+{
+	"description": "One move right.",
+	"language": "ro",
+	"spec": "§11 T1",
+	"end": {
+		"facing": "right",
+		"grid": [".@"]
+	},
+	"steps": 1
+}

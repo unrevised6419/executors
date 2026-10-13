@@ -1,0 +1,10 @@
+{
+	"description": "WHILE walks to the edge.",
+	"language": "ro",
+	"spec": "§11 T10",
+	"end": {
+		"facing": "right",
+		"grid": [".........@"]
+	},
+	"steps": 19
+}

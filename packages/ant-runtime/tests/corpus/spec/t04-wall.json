@@ -1,0 +1,14 @@
+{
+	"description": "Walking into the wall fails; the ant still turns.",
+	"language": "ro",
+	"spec": "§11 T4",
+	"end": {
+		"facing": "up",
+		"grid": ["@"]
+	},
+	"error": {
+		"code": "wall",
+		"line": 2,
+		"column": 1
+	}
+}

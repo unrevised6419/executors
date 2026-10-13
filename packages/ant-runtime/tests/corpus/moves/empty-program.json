@@ -1,0 +1,9 @@
+{
+	"description": "An empty program does nothing.",
+	"language": "ro",
+	"end": {
+		"facing": "down",
+		"grid": ["@"]
+	},
+	"steps": 0
+}
