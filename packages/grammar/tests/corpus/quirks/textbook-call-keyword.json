@@ -1,0 +1,13 @@
+{
+	"description": "The textbook's EXECUTA Nume is not a call (§12).",
+	"language": "ro",
+	"spec": "§12",
+	"errors": [
+		{
+			"code": "invalid-statement",
+			"line": 5,
+			"column": 1,
+			"text": "EXECUTĂ"
+		}
+	]
+}

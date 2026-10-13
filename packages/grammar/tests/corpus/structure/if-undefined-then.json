@@ -1,0 +1,12 @@
+{
+	"description": "IF branches are checked.",
+	"language": "ro",
+	"errors": [
+		{
+			"code": "undefined-procedure",
+			"line": 2,
+			"column": 23,
+			"name": "P"
+		}
+	]
+}

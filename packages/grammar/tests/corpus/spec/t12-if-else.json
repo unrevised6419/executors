@@ -1,0 +1,16 @@
+{
+	"description": "IF with ELSE.",
+	"language": "ro",
+	"spec": "§11 T12",
+	"ast": {
+		"procedures": [],
+		"body": [
+			"right",
+			{
+				"if": "atEdge",
+				"then": "up",
+				"else": "down"
+			}
+		]
+	}
+}

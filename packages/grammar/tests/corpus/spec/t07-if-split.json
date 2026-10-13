@@ -1,0 +1,14 @@
+{
+	"description": "IF must be on one line.",
+	"language": "ro",
+	"spec": "§11 T7",
+	"errors": [
+		{
+			"code": "unexpected",
+			"line": 2,
+			"column": 15,
+			"expected": ["THEN"],
+			"found": "newline"
+		}
+	]
+}

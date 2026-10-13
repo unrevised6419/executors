@@ -1,0 +1,13 @@
+{
+	"description": "No sign on counts (§3.3).",
+	"language": "ro",
+	"spec": "§3.3",
+	"errors": [
+		{
+			"code": "invalid-character",
+			"line": 2,
+			"column": 8,
+			"text": "-"
+		}
+	]
+}

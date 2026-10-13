@@ -1,0 +1,12 @@
+{
+	"description": "The file ends after a procedure header.",
+	"language": "ro",
+	"errors": [
+		{
+			"code": "missing-end",
+			"line": 1,
+			"column": 12,
+			"block": "procedure"
+		}
+	]
+}

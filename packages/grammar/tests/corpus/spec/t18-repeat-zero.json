@@ -1,0 +1,14 @@
+{
+	"description": "REPEAT 0 is valid (it runs zero times).",
+	"language": "ro",
+	"spec": "§11 T18",
+	"ast": {
+		"procedures": [],
+		"body": [
+			{
+				"repeat": 0,
+				"body": ["right", "down"]
+			}
+		]
+	}
+}

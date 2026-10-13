@@ -1,0 +1,12 @@
+{
+	"description": "Calls inside procedures are checked.",
+	"language": "ro",
+	"errors": [
+		{
+			"code": "undefined-procedure",
+			"line": 2,
+			"column": 1,
+			"name": "NIMIC"
+		}
+	]
+}

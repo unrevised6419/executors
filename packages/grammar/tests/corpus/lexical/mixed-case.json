@@ -1,0 +1,9 @@
+{
+	"description": "Any letter case.",
+	"language": "ro",
+	"spec": "§3.1",
+	"ast": {
+		"procedures": [],
+		"body": ["right"]
+	}
+}

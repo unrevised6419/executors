@@ -1,0 +1,14 @@
+{
+	"description": "A number must be a separate word.",
+	"language": "ro",
+	"errors": [
+		{
+			"code": "unexpected",
+			"line": 2,
+			"column": 8,
+			"expected": ["number"],
+			"found": "name",
+			"text": "3ORI"
+		}
+	]
+}

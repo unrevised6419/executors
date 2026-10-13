@@ -1,0 +1,14 @@
+{
+	"description": "Cross-keyword line (§9 #19).",
+	"language": "ro",
+	"spec": "§4.3",
+	"errors": [
+		{
+			"code": "unexpected",
+			"line": 2,
+			"column": 10,
+			"expected": ["TIMES"],
+			"found": "WHILE"
+		}
+	]
+}

@@ -1,0 +1,31 @@
+{
+	"description": "English keywords.",
+	"language": "en",
+	"ast": {
+		"procedures": [
+			{
+				"name": "step",
+				"body": ["right"]
+			}
+		],
+		"body": [
+			{
+				"repeat": 2,
+				"body": [
+					{
+						"call": "step"
+					}
+				]
+			},
+			{
+				"while": "notAtEdge",
+				"body": ["down"]
+			},
+			{
+				"if": "atEdge",
+				"then": "up",
+				"else": "left"
+			}
+		]
+	}
+}

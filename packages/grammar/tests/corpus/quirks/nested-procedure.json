@@ -1,0 +1,12 @@
+{
+	"description": "Procedures cannot be nested (§4.4).",
+	"language": "ro",
+	"spec": "§4.4",
+	"errors": [
+		{
+			"code": "misplaced-procedure",
+			"line": 2,
+			"column": 1
+		}
+	]
+}

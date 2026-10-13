@@ -1,0 +1,25 @@
+{
+	"description": "Procedures may call procedures defined after them.",
+	"language": "ro",
+	"ast": {
+		"procedures": [
+			{
+				"name": "A",
+				"body": [
+					{
+						"call": "B"
+					}
+				]
+			},
+			{
+				"name": "B",
+				"body": ["right"]
+			}
+		],
+		"body": [
+			{
+				"call": "A"
+			}
+		]
+	}
+}

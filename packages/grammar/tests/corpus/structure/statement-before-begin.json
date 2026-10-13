@@ -1,0 +1,11 @@
+{
+	"description": "Statements go between BEGIN and END.",
+	"language": "ro",
+	"errors": [
+		{
+			"code": "missing-begin",
+			"line": 1,
+			"column": 1
+		}
+	]
+}

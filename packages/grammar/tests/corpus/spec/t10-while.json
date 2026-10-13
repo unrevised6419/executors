@@ -1,0 +1,14 @@
+{
+	"description": "WHILE.",
+	"language": "ro",
+	"spec": "§11 T10",
+	"ast": {
+		"procedures": [],
+		"body": [
+			{
+				"while": "notAtEdge",
+				"body": ["right"]
+			}
+		]
+	}
+}

@@ -1,0 +1,18 @@
+{
+	"description": "Every unknown call is reported.",
+	"language": "ro",
+	"errors": [
+		{
+			"code": "undefined-procedure",
+			"line": 2,
+			"column": 1,
+			"name": "A"
+		},
+		{
+			"code": "undefined-procedure",
+			"line": 4,
+			"column": 1,
+			"name": "B"
+		}
+	]
+}

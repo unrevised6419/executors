@@ -1,0 +1,14 @@
+{
+	"description": "Post-1993 spellings: SFÂRȘIT, STÂNGA, CÂT (aliases).",
+	"language": "ro",
+	"ast": {
+		"procedures": [],
+		"body": [
+			"left",
+			{
+				"while": "notAtEdge",
+				"body": ["right"]
+			}
+		]
+	}
+}

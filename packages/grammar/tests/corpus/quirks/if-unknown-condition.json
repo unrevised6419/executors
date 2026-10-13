@@ -1,0 +1,15 @@
+{
+	"description": "Only the two conditions exist.",
+	"language": "ro",
+	"spec": "§12",
+	"errors": [
+		{
+			"code": "unexpected",
+			"line": 2,
+			"column": 6,
+			"expected": ["AT_EDGE", "NOT_AT_EDGE"],
+			"found": "name",
+			"text": "E_LINIE"
+		}
+	]
+}

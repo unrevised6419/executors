@@ -1,0 +1,13 @@
+{
+	"description": "Aliases are reserved too: CAT is WHILE.",
+	"language": "ro",
+	"errors": [
+		{
+			"code": "reserved-word",
+			"line": 1,
+			"column": 11,
+			"role": "WHILE",
+			"text": "Cat"
+		}
+	]
+}

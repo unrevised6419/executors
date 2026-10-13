@@ -1,0 +1,13 @@
+{
+	"description": "Unbalanced REPEAT at the end of the file.",
+	"language": "ro",
+	"spec": "§8 C1",
+	"errors": [
+		{
+			"code": "missing-end",
+			"line": 3,
+			"column": 8,
+			"block": "repeat"
+		}
+	]
+}

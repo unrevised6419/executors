@@ -1,0 +1,13 @@
+{
+	"description": "Unicode spaces (no-break, ideographic) separate words.",
+	"language": "ro",
+	"ast": {
+		"procedures": [],
+		"body": [
+			{
+				"repeat": 3,
+				"body": ["right"]
+			}
+		]
+	}
+}

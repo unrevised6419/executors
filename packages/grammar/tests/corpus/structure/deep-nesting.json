@@ -1,0 +1,56 @@
+{
+	"description": "Every statement works in every block.",
+	"language": "ro",
+	"spec": "§5.8",
+	"ast": {
+		"procedures": [
+			{
+				"name": "P",
+				"body": [
+					{
+						"repeat": 2,
+						"body": [
+							{
+								"while": "notAtEdge",
+								"body": [
+									{
+										"if": "atEdge",
+										"then": "up",
+										"else": "right"
+									},
+									{
+										"repeat": 1,
+										"body": [
+											{
+												"call": "Q"
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "Q",
+				"body": ["down"]
+			}
+		],
+		"body": [
+			{
+				"while": "notAtEdge",
+				"body": [
+					{
+						"repeat": 3,
+						"body": [
+							{
+								"call": "P"
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+}

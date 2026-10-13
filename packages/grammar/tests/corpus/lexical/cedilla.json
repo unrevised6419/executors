@@ -1,0 +1,8 @@
+{
+	"description": "ş (cedilla) and ș (comma) are both s.",
+	"language": "ro",
+	"ast": {
+		"procedures": [],
+		"body": ["right"]
+	}
+}

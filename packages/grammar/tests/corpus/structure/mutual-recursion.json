@@ -1,0 +1,37 @@
+{
+	"description": "Procedures may call each other.",
+	"language": "ro",
+	"ast": {
+		"procedures": [
+			{
+				"name": "A",
+				"body": [
+					"right",
+					{
+						"if": "notAtEdge",
+						"then": {
+							"call": "B"
+						}
+					}
+				]
+			},
+			{
+				"name": "B",
+				"body": [
+					"down",
+					{
+						"if": "notAtEdge",
+						"then": {
+							"call": "A"
+						}
+					}
+				]
+			}
+		],
+		"body": [
+			{
+				"call": "A"
+			}
+		]
+	}
+}

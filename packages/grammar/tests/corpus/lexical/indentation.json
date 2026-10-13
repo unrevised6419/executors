@@ -1,0 +1,18 @@
+{
+	"description": "Indentation is free.",
+	"language": "ro",
+	"ast": {
+		"procedures": [],
+		"body": [
+			{
+				"repeat": 2,
+				"body": [
+					{
+						"while": "notAtEdge",
+						"body": ["right"]
+					}
+				]
+			}
+		]
+	}
+}

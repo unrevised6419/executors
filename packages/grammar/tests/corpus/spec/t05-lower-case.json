@@ -1,0 +1,9 @@
+{
+	"description": "Keywords are case-insensitive.",
+	"language": "ro",
+	"spec": "§11 T5",
+	"ast": {
+		"procedures": [],
+		"body": ["right"]
+	}
+}

@@ -1,0 +1,14 @@
+{
+	"description": "Any amount of whitespace between words.",
+	"language": "ro",
+	"spec": "§3.1",
+	"ast": {
+		"procedures": [],
+		"body": [
+			{
+				"repeat": 3,
+				"body": ["right"]
+			}
+		]
+	}
+}

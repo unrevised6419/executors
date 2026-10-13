@@ -1,0 +1,17 @@
+{
+	"description": "Line comments, whole-line and trailing.",
+	"language": "ro",
+	"ast": {
+		"procedures": [
+			{
+				"name": "P",
+				"body": ["right"]
+			}
+		],
+		"body": [
+			{
+				"call": "P"
+			}
+		]
+	}
+}

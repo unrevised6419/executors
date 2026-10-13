@@ -1,0 +1,13 @@
+{
+	"description": "An end marker is on one line.",
+	"language": "ro",
+	"errors": [
+		{
+			"code": "mismatched-end",
+			"line": 3,
+			"column": 1,
+			"block": "repeat",
+			"text": "SFIRSIT"
+		}
+	]
+}

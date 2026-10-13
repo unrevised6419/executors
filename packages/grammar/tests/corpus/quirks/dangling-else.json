@@ -1,0 +1,14 @@
+{
+	"description": "ELSE without a branch (§9 #15).",
+	"language": "ro",
+	"spec": "§4.6",
+	"errors": [
+		{
+			"code": "unexpected",
+			"line": 2,
+			"column": 33,
+			"expected": ["UP", "DOWN", "LEFT", "RIGHT", "name"],
+			"found": "newline"
+		}
+	]
+}

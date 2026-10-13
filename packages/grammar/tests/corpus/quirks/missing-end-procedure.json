@@ -1,0 +1,13 @@
+{
+	"description": "A procedure without its end marker (§9 #17).",
+	"language": "ro",
+	"spec": "§9 #17",
+	"errors": [
+		{
+			"code": "missing-end",
+			"line": 3,
+			"column": 1,
+			"block": "procedure"
+		}
+	]
+}

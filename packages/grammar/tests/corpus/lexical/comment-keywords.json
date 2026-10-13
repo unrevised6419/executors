@@ -1,0 +1,8 @@
+{
+	"description": "Keywords inside comments are ignored.",
+	"language": "ro",
+	"ast": {
+		"procedures": [],
+		"body": ["right"]
+	}
+}

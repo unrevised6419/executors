@@ -1,0 +1,13 @@
+{
+	"description": "Duplicate names are errors (the original kept the first, §4.3).",
+	"language": "ro",
+	"spec": "§4.3",
+	"errors": [
+		{
+			"code": "duplicate-procedure",
+			"line": 4,
+			"column": 11,
+			"name": "p"
+		}
+	]
+}

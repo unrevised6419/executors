@@ -1,0 +1,12 @@
+{
+	"description": "Procedures go before BEGIN.",
+	"language": "ro",
+	"spec": "§11 T15",
+	"errors": [
+		{
+			"code": "code-after-end",
+			"line": 4,
+			"column": 1
+		}
+	]
+}

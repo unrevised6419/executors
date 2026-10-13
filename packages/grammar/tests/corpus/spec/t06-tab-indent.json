@@ -1,0 +1,9 @@
+{
+	"description": "A tab is whitespace (the original rejects it, §9 #16).",
+	"language": "ro",
+	"spec": "§11 T6",
+	"ast": {
+		"procedures": [],
+		"body": ["right"]
+	}
+}

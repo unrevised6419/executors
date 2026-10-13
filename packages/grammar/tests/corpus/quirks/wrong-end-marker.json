@@ -1,0 +1,14 @@
+{
+	"description": "END WHILE closing a REPEAT.",
+	"language": "ro",
+	"spec": "§4.3",
+	"errors": [
+		{
+			"code": "mismatched-end",
+			"line": 4,
+			"column": 1,
+			"block": "repeat",
+			"text": "SFIRSIT CIT"
+		}
+	]
+}

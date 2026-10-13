@@ -1,0 +1,8 @@
+{
+	"description": "A comment can touch the word before it.",
+	"language": "ro",
+	"ast": {
+		"procedures": [],
+		"body": ["right"]
+	}
+}

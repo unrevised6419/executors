@@ -1,0 +1,12 @@
+{
+	"description": "END twice (§9 #12).",
+	"language": "ro",
+	"spec": "§9 #12",
+	"errors": [
+		{
+			"code": "code-after-end",
+			"line": 3,
+			"column": 1
+		}
+	]
+}

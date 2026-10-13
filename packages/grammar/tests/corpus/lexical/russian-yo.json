@@ -1,0 +1,12 @@
+{
+	"description": "ё and е are the same letter.",
+	"language": "ru",
+	"errors": [
+		{
+			"code": "duplicate-procedure",
+			"line": 3,
+			"column": 11,
+			"name": "ЕЖ"
+		}
+	]
+}

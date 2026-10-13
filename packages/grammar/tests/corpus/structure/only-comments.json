@@ -1,0 +1,11 @@
+{
+	"description": "Only comments.",
+	"language": "ro",
+	"errors": [
+		{
+			"code": "missing-begin",
+			"line": 2,
+			"column": 1
+		}
+	]
+}

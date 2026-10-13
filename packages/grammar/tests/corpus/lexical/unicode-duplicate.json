@@ -1,0 +1,12 @@
+{
+	"description": "Față and FATA are the same name.",
+	"language": "ro",
+	"errors": [
+		{
+			"code": "duplicate-procedure",
+			"line": 4,
+			"column": 11,
+			"name": "FATA"
+		}
+	]
+}

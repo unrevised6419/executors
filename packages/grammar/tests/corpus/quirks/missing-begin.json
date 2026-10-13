@@ -1,0 +1,12 @@
+{
+	"description": "No BEGIN (§9 #12).",
+	"language": "ro",
+	"spec": "§9 #12",
+	"errors": [
+		{
+			"code": "missing-begin",
+			"line": 1,
+			"column": 1
+		}
+	]
+}

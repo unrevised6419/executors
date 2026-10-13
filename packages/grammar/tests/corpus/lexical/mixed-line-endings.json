@@ -1,0 +1,8 @@
+{
+	"description": "Mixed line endings.",
+	"language": "ro",
+	"ast": {
+		"procedures": [],
+		"body": ["right", "down"]
+	}
+}

@@ -1,0 +1,14 @@
+{
+	"description": "WHILE with AT_EDGE parses (its body never ran in the original, §9 #3).",
+	"language": "ro",
+	"spec": "§11 T11",
+	"ast": {
+		"procedures": [],
+		"body": [
+			{
+				"while": "atEdge",
+				"body": ["up"]
+			}
+		]
+	}
+}

@@ -1,0 +1,14 @@
+{
+	"description": "An empty WHILE body is valid (it hung the original, §9 #21).",
+	"language": "ro",
+	"spec": "§11 T21",
+	"ast": {
+		"procedures": [],
+		"body": [
+			{
+				"while": "notAtEdge",
+				"body": []
+			}
+		]
+	}
+}

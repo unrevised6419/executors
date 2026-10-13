@@ -1,0 +1,24 @@
+{
+	"description": "й and и are different letters.",
+	"language": "ru",
+	"ast": {
+		"procedures": [
+			{
+				"name": "ЙОД",
+				"body": []
+			},
+			{
+				"name": "ИОД",
+				"body": []
+			}
+		],
+		"body": [
+			{
+				"call": "йод"
+			},
+			{
+				"call": "иод"
+			}
+		]
+	}
+}

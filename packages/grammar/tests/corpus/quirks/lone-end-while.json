@@ -1,0 +1,14 @@
+{
+	"description": "A lone END WHILE (§4.5).",
+	"language": "ro",
+	"spec": "§4.5",
+	"errors": [
+		{
+			"code": "mismatched-end",
+			"line": 2,
+			"column": 1,
+			"block": "program",
+			"text": "SFIRSIT CIT"
+		}
+	]
+}

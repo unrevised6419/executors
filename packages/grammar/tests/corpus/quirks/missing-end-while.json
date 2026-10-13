@@ -1,0 +1,13 @@
+{
+	"description": "Unbalanced WHILE (not detected by the original, §9 #13).",
+	"language": "ro",
+	"spec": "§9 #13",
+	"errors": [
+		{
+			"code": "missing-end",
+			"line": 3,
+			"column": 8,
+			"block": "while"
+		}
+	]
+}
