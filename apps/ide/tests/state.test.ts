@@ -20,6 +20,25 @@ const run = (state: IdeState) =>
 	ideReducer(state, { type: "start-run", paused: false });
 
 describe("ideReducer", () => {
+	test("only replace-content bumps sourceRevision", () => {
+		expect(free.sourceRevision).toBe(0);
+		const typed = ideReducer(free, {
+			type: "edit-source",
+			source: "INCEPUT",
+		});
+		expect(typed.sourceRevision).toBe(0);
+		const opened = ideReducer(typed, {
+			type: "replace-content",
+			source: "x",
+		});
+		expect(opened.sourceRevision).toBe(1);
+		expect(opened.exercise.source).toBe("x");
+		expect(
+			ideReducer(opened, { type: "edit-source", source: "y" })
+				.sourceRevision,
+		).toBe(1);
+	});
+
 	test("a run shows each step and ends in done", () => {
 		let s = run(free);
 		expect(s.mode).toBe("running");

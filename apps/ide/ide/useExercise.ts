@@ -12,25 +12,31 @@ import {
 export type Loaded =
 	| { status: "loading" }
 	| { status: "ready"; exercise: Exercise }
-	| { status: "not-found" };
+	| { status: "not-found" }
+	| { status: "error" };
 
-/** Resolves `/ide?task=N`, `/ide?id=…` or `/ide` to an exercise, creating it when needed. */
+/**
+ * Resolves `/ide?task=N`, `/ide?id=…` or a bare `/ide` to an exercise, creating
+ * it when needed. The route instance can be reused across navigations, so
+ * nothing created for one navigation may be handed to a later one.
+ */
 export function useExercise(
 	store: ExerciseStore | undefined,
 	query: { id: string | null; task: string | null },
 ): Loaded {
 	const router = useRouter();
 	const [loaded, setLoaded] = useState<Loaded>({ status: "loading" });
-	// React runs effects twice in development. Reusing the exercise created
-	// for a query keeps that from saving two new exercises.
-	const created = useRef(new Map<string, Exercise>());
-	const once = (key: string, make: () => Exercise) => {
-		let exercise = created.current.get(key);
-		if (!exercise) {
-			exercise = make();
-			created.current.set(key, exercise);
+	// React runs effects twice in development. Both runs share the resolution
+	// that is already in flight, so a new exercise is created and saved once.
+	// An entry lives only until its resolution settles.
+	const inflight = useRef(new Map<string, Promise<Exercise>>());
+	const shared = (key: string, resolve: () => Promise<Exercise>) => {
+		let promise = inflight.current.get(key);
+		if (!promise) {
+			promise = resolve().finally(() => inflight.current.delete(key));
+			inflight.current.set(key, promise);
 		}
-		return exercise;
+		return promise;
 	};
 
 	useEffect(() => {
@@ -41,33 +47,47 @@ export function useExercise(
 		// eslint-disable-next-line react-hooks/set-state-in-effect
 		setLoaded({ status: "loading" });
 		void (async () => {
-			const language = readLanguage();
-			const taskNumber = Number(query.task);
-			if (query.task !== null) {
-				if (!TASKS.some((t) => t.number === taskNumber))
-					return done({ status: "not-found" });
-				let exercise = await store.findByTask(taskNumber);
-				if (!exercise) {
-					exercise = once(`task-${taskNumber}`, () =>
-						newExercise({ language, taskNumber }),
+			try {
+				const language = readLanguage();
+				const taskNumber = Number(query.task);
+				if (query.task !== null) {
+					if (!TASKS.some((t) => t.number === taskNumber))
+						return done({ status: "not-found" });
+					const exercise = await shared(
+						`task-${taskNumber}`,
+						async () => {
+							const found = await store.findByTask(taskNumber);
+							if (found) return found;
+							const created = newExercise({
+								language,
+								taskNumber,
+							});
+							await store.save(created);
+							return created;
+						},
 					);
-					await store.save(exercise);
+					return done({ status: "ready", exercise });
 				}
-				return done({ status: "ready", exercise });
+				if (query.id !== null) {
+					const exercise = await store.load(query.id);
+					return done(
+						exercise
+							? { status: "ready", exercise }
+							: { status: "not-found" },
+					);
+				}
+				const exercise = await shared("new", async () => {
+					const created = newExercise({
+						language,
+						title: MESSAGES[language].newProgram,
+					});
+					await store.save(created);
+					return created;
+				});
+				if (alive) router.replace(`/ide?id=${exercise.id}`);
+			} catch {
+				done({ status: "error" });
 			}
-			if (query.id !== null) {
-				const exercise = await store.load(query.id);
-				return done(
-					exercise
-						? { status: "ready", exercise }
-						: { status: "not-found" },
-				);
-			}
-			const exercise = once("new", () =>
-				newExercise({ language, title: MESSAGES[language].newProgram }),
-			);
-			await store.save(exercise);
-			if (alive) router.replace(`/ide?id=${exercise.id}`);
 		})();
 		return () => {
 			alive = false;

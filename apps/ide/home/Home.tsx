@@ -2,21 +2,24 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { CheckCircle2, Plus, Trash2 } from "lucide-react";
 import type { Language } from "@repo/ant-grammar";
 import { TASKS } from "@repo/ant-tasks";
+import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import { useDialogs } from "@/components/dialogs";
 import { MESSAGES } from "@/i18n/messages";
 import { readLanguage } from "@/lib/preferences";
-import type { ExerciseSummary } from "@/storage/exercise";
+import { newExercise, type ExerciseSummary } from "@/storage/exercise";
 import { useStore } from "@/storage/StoreProvider";
 
 export function Home() {
 	const opened = useStore();
 	const [language, setLanguage] = useState<Language>("ro");
 	const [list, setList] = useState<ExerciseSummary[]>([]);
+	const router = useRouter();
 	const t = MESSAGES[language];
 	const dialogs = useDialogs(t);
 
@@ -31,6 +34,18 @@ export function Home() {
 		list.filter((e) => e.solved).map((e) => e.taskNumber),
 	);
 	const free = list.filter((e) => e.taskNumber === undefined);
+
+	async function create() {
+		if (!opened) return;
+		const fresh = newExercise({ language, title: t.newProgram });
+		try {
+			await opened.store.save(fresh);
+		} catch {
+			toast.error(t.notSaved);
+			return;
+		}
+		router.push(`/ide?id=${fresh.id}`);
+	}
 
 	async function remove(id: string) {
 		if (!opened || !(await dialogs.confirm(t.confirmRemove))) return;
@@ -69,11 +84,9 @@ export function Home() {
 			<section className="flex flex-col gap-3">
 				<div className="flex items-center justify-between">
 					<h2 className="text-xl font-semibold">{t.myPrograms}</h2>
-					<Button asChild>
-						<Link href="/ide">
-							<Plus />
-							{t.freeProgram}
-						</Link>
+					<Button disabled={!opened} onClick={() => void create()}>
+						<Plus />
+						{t.freeProgram}
 					</Button>
 				</div>
 				{free.length === 0 ? (

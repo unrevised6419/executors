@@ -26,6 +26,15 @@ export function IdeRoute({
 				</Link>
 			</p>
 		);
+	if (loaded.status === "error")
+		return (
+			<p className="p-6">
+				{t.loadFailed}{" "}
+				<Link className="underline" href="/">
+					{t.home}
+				</Link>
+			</p>
+		);
 	if (loaded.status === "loading" || !opened)
 		return <p className="p-6">{t.loading}</p>;
 	return (

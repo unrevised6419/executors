@@ -52,6 +52,7 @@ export interface Messages {
 	retry: string;
 	notFound: string;
 	loading: string;
+	loadFailed: string;
 	program: string;
 	grid: string;
 }
@@ -114,6 +115,7 @@ const ro: Messages = {
 	retry: "Reîncearcă",
 	notFound: "Programul nu a fost găsit.",
 	loading: "Se încarcă…",
+	loadFailed: "Programul nu a putut fi încărcat.",
 	program: "Program",
 	grid: "Teren",
 };
@@ -175,6 +177,7 @@ const en: Messages = {
 	retry: "Retry",
 	notFound: "The program was not found.",
 	loading: "Loading…",
+	loadFailed: "The program could not be loaded.",
 	program: "Program",
 	grid: "Grid",
 };
@@ -236,6 +239,7 @@ const ru: Messages = {
 	retry: "Повторить",
 	notFound: "Программа не найдена.",
 	loading: "Загрузка…",
+	loadFailed: "Не удалось загрузить программу.",
 	program: "Программа",
 	grid: "Поле",
 };

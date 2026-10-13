@@ -17,7 +17,11 @@ import { runtimeErrorMessage } from "@/i18n/errors";
 import { MESSAGES } from "@/i18n/messages";
 import { readSpeed, writeLanguage, writeSpeed } from "@/lib/preferences";
 import { cn } from "@/lib/utils";
-import type { Exercise, ExerciseStore } from "@/storage/exercise";
+import {
+	newExercise,
+	type Exercise,
+	type ExerciseStore,
+} from "@/storage/exercise";
 import { useAutosave } from "@/storage/useAutosave";
 import { AntEditor } from "./editor/AntEditor";
 import { EditorBoundary } from "./editor/EditorBoundary";
@@ -109,7 +113,15 @@ export function IdeWorkspace({
 
 	const actions = {
 		onNew: async () => {
-			if (await dialogs.confirm(t.confirmNew)) router.push("/ide");
+			if (!(await dialogs.confirm(t.confirmNew))) return;
+			const fresh = newExercise({ language, title: t.newProgram });
+			try {
+				await store.save(fresh);
+			} catch {
+				toast.error(t.notSaved);
+				return;
+			}
+			router.push(`/ide?id=${fresh.id}`);
 		},
 		onCheck: () => {
 			const { diagnostics } = parseNow();
@@ -259,6 +271,7 @@ export function IdeWorkspace({
 						>
 							<AntEditor
 								value={exercise.source}
+								revision={state.sourceRevision}
 								language={language}
 								readOnly={!editing}
 								diagnostics={state.diagnostics}

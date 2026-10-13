@@ -22,6 +22,8 @@ export interface IdeState {
 	readonly goalCheck: GoalCheck | undefined;
 	/** Slider position, 0..20. */
 	readonly speed: number;
+	/** Bumped when the source is replaced from outside the editor (file open). */
+	readonly sourceRevision: number;
 }
 
 export type StepReport = { readonly world: World } & RunView;
@@ -49,6 +51,7 @@ export function initialState(exercise: Exercise, speed: number): IdeState {
 		diagnostics: [],
 		goalCheck: undefined,
 		speed,
+		sourceRevision: 0,
 	};
 }
 
@@ -84,11 +87,14 @@ export function ideReducer(state: IdeState, action: IdeAction): IdeState {
 			return toSetup(state, { ...exercise, start: action.world });
 		case "replace-content":
 			if (running(state.mode)) return state;
-			return toSetup(state, {
-				...exercise,
-				source: action.source,
-				start: action.start ?? exercise.start,
-			});
+			return toSetup(
+				{ ...state, sourceRevision: state.sourceRevision + 1 },
+				{
+					...exercise,
+					source: action.source,
+					start: action.start ?? exercise.start,
+				},
+			);
 		case "set-language":
 			if (running(state.mode)) return state;
 			return toSetup(state, { ...exercise, language: action.language });

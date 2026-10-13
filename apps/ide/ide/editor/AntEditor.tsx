@@ -2,7 +2,7 @@
 
 import Editor, { loader } from "@monaco-editor/react";
 import * as monaco from "monaco-editor";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 import type { Diagnostic, Language, Range } from "@repo/ant-grammar";
 import type { RuntimeError } from "@repo/ant-runtime";
@@ -32,6 +32,7 @@ const toMonaco = (r: Range) =>
 
 export function AntEditor({
 	value,
+	revision,
 	language,
 	readOnly,
 	diagnostics,
@@ -41,6 +42,8 @@ export function AntEditor({
 	onEditor,
 }: {
 	value: string;
+	/** Changes when `value` is replaced from outside; typing never changes it. */
+	revision: number;
 	language: Language;
 	readOnly: boolean;
 	diagnostics: readonly Diagnostic[];
@@ -53,6 +56,47 @@ export function AntEditor({
 	const [editor, setEditor] = useState<monaco.editor.IStandaloneCodeEditor>();
 	const decorations =
 		useRef<monaco.editor.IEditorDecorationsCollection>(undefined);
+
+	// The editor owns its text while the user types, so a render that lags
+	// behind the keystrokes can never overwrite it. `value` is only pushed in
+	// when `revision` says it was replaced from outside.
+	const valueRef = useRef(value);
+	useEffect(() => {
+		valueRef.current = value;
+	}, [value]);
+
+	useEffect(() => {
+		const model = editor?.getModel();
+		if (!editor || !model || model.getValue() === valueRef.current) return;
+		editor.pushUndoStop();
+		editor.executeEdits("external", [
+			{ range: model.getFullModelRange(), text: valueRef.current },
+		]);
+		editor.pushUndoStop();
+	}, [editor, revision]);
+
+	const onChangeRef = useRef(onChange);
+	useEffect(() => {
+		onChangeRef.current = onChange;
+	}, [onChange]);
+	const handleChange = useCallback(
+		(v: string | undefined) => onChangeRef.current(v ?? ""),
+		[],
+	);
+	const options = useMemo<monaco.editor.IStandaloneEditorConstructionOptions>(
+		() => ({
+			readOnly,
+			minimap: { enabled: false },
+			fontSize: 14,
+			tabSize: 2,
+			insertSpaces: true,
+			automaticLayout: true,
+			scrollBeyondLastLine: false,
+			quickSuggestions: false,
+			wordBasedSuggestions: "off",
+		}),
+		[readOnly],
+	);
 
 	useEffect(() => {
 		const model = editor?.getModel();
@@ -100,23 +144,13 @@ export function AntEditor({
 			height="100%"
 			language={languageId(language)}
 			theme={resolvedTheme === "dark" ? "furnica-dark" : "furnica-light"}
-			value={value}
-			onChange={(v: string | undefined) => onChange(v ?? "")}
+			defaultValue={value}
+			onChange={handleChange}
 			onMount={(e: monaco.editor.IStandaloneCodeEditor) => {
 				setEditor(e);
 				onEditor?.(e);
 			}}
-			options={{
-				readOnly,
-				minimap: { enabled: false },
-				fontSize: 14,
-				tabSize: 2,
-				insertSpaces: true,
-				automaticLayout: true,
-				scrollBeyondLastLine: false,
-				quickSuggestions: false,
-				wordBasedSuggestions: "off",
-			}}
+			options={options}
 		/>
 	);
 }
