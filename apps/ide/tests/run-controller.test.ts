@@ -14,6 +14,8 @@ const ENDLESS = program(
 	"INCEPUT\nCIT NU_E_MARGINE EXECUTA\nDREAPTA\nSTINGA\nSFIRSIT CIT\nSFIRSIT",
 );
 const MIDDLE: World = { ...INITIAL_WORLD, ant: { x: 5, y: 5 } };
+const LEFT = program("INCEPUT\nSTINGA\nSFIRSIT");
+const ONE = program("INCEPUT\nDREAPTA\nSFIRSIT");
 
 function controller() {
 	const reports: StepReport[] = [];
@@ -79,4 +81,40 @@ test("reports a runtime error with its range", () => {
 		error: { code: "wall" },
 	});
 	expect(reports.at(-1)!.current?.start.line).toBe(2);
+});
+
+test("starting again replaces the active run and its timer", () => {
+	const { reports, c } = controller();
+	c.start(THREE, MIDDLE, { delay: 100, paused: false });
+	vi.advanceTimersByTime(100);
+	c.start(LEFT, MIDDLE, { delay: 100, paused: false });
+	expect(vi.getTimerCount()).toBe(1);
+	const before = reports.length;
+	vi.advanceTimersByTime(1000);
+	const fresh = reports.slice(before);
+	expect(fresh.length).toBeGreaterThan(0);
+	expect(fresh.every((r) => r.world.ant.x === 4)).toBe(true);
+	expect(vi.getTimerCount()).toBe(0);
+});
+
+test("pause clears the pending timer", () => {
+	const { reports, c } = controller();
+	c.start(THREE, INITIAL_WORLD, { delay: 100, paused: false });
+	vi.advanceTimersByTime(50);
+	c.pause();
+	expect(vi.getTimerCount()).toBe(0);
+	const before = reports.length;
+	vi.advanceTimersByTime(1000);
+	expect(reports).toHaveLength(before);
+});
+
+test("a stepOnce that ends the run leaves no timer and no extra report", () => {
+	const { reports, c } = controller();
+	c.start(ONE, INITIAL_WORLD, { delay: 100, paused: false });
+	c.stepOnce();
+	expect(reports.at(-1)).toMatchObject({ steps: 1, status: "finished" });
+	expect(vi.getTimerCount()).toBe(0);
+	const before = reports.length;
+	vi.advanceTimersByTime(1000);
+	expect(reports).toHaveLength(before);
 });

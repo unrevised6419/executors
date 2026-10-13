@@ -53,7 +53,10 @@ export class RunController {
 	}
 
 	stepOnce(): void {
-		if (this.#run?.status === "running") this.#advance(1);
+		if (this.#run?.status !== "running") return;
+		this.#advance(1);
+		// The step may have ended the run; a timer still pending would tick it again.
+		if (this.#run?.status !== "running") this.#clear();
 	}
 
 	stop(): void {
@@ -82,6 +85,7 @@ export class RunController {
 		let last: Step | undefined;
 		for (let i = 0; i < count && run.status === "running"; i++)
 			last = run.step();
+		if (last === undefined) return;
 		this.#report({
 			world: run.world,
 			steps: run.steps,
