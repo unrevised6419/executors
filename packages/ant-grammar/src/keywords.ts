@@ -1,14 +1,14 @@
 /**
  * Keyword roles and the keyword set of each language.
  *
- * The language is defined over roles, not spellings (spec-ant §2.2). A
+ * The language is defined over roles, not spellings (ant-spec §2.2). A
  * program is written in exactly one language; its words are matched against
  * that language's keywords with the comparison in `text.ts`, so case and
  * diacritics are ignored (`SFIRSIT` = `sfîrșit` = `SFÂRȘIT` via the alias).
  *
  * End markers are not roles of their own: `END_REPEAT` is the two words
  * `END REPEAT`, `END_WHILE` is `END WHILE` and `END_PROC` is `END PROC`, as in
- * the original (spec-ant §2.2, constraints between roles).
+ * the original (ant-spec §2.2, constraints between roles).
  */
 
 export const ROLES = [
@@ -44,7 +44,7 @@ export interface KeywordSet {
 	readonly aliases: Readonly<Partial<Record<Role, readonly string[]>>>;
 }
 
-/** Romanian: the original spellings (spec-ant §2.2, §2.3). */
+/** Romanian: the original spellings (ant-spec §2.2, §2.3). */
 const ro: KeywordSet = {
 	language: "ro",
 	keywords: {
@@ -74,7 +74,7 @@ const ro: KeywordSet = {
 	},
 };
 
-/** English: proposal (spec-ant §2.4). */
+/** English: proposal (ant-spec §2.4). */
 const en: KeywordSet = {
 	language: "en",
 	keywords: {
@@ -98,7 +98,7 @@ const en: KeywordSet = {
 	aliases: {},
 };
 
-/** Russian: proposal (spec-ant §2.4). */
+/** Russian: proposal (ant-spec §2.4). */
 const ru: KeywordSet = {
 	language: "ru",
 	keywords: {

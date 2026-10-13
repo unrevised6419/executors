@@ -1,5 +1,5 @@
 {
-	"name": "@executors/grammar-ant",
+	"name": "@executors/ant-grammar",
 	"version": "0.1.0",
 	"private": true,
 	"type": "module",

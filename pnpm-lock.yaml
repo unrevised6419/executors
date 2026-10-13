@@ -185,7 +185,7 @@ importers:
         specifier: ^3.9.10
         version: 3.9.10
 
-  packages/grammar-ant:
+  packages/ant-grammar:
     dependencies:
       chevrotain:
         specifier: ^13.2.0
