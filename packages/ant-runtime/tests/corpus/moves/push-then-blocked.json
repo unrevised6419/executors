@@ -1,0 +1,17 @@
+{
+	"description": "A pushed object stops at the next one.",
+	"language": "ro",
+	"start": {
+		"facing": "down",
+		"grid": ["@A.B"]
+	},
+	"end": {
+		"facing": "right",
+		"grid": [".@AB"]
+	},
+	"error": {
+		"code": "push-blocked",
+		"line": 3,
+		"column": 1
+	}
+}

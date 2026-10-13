@@ -1,0 +1,18 @@
+{
+	"description": "An endless WHILE with an empty body reaches the step limit.",
+	"language": "ro",
+	"options": {
+		"maxSteps": 50
+	},
+	"end": {
+		"facing": "down",
+		"grid": ["@"]
+	},
+	"error": {
+		"code": "step-limit",
+		"line": 2,
+		"column": 1,
+		"limit": 50
+	},
+	"steps": 50
+}

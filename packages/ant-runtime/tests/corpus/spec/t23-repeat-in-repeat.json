@@ -1,0 +1,9 @@
+{
+	"description": "Lines after an inner REPEAT run once per outer pass.",
+	"language": "ro",
+	"spec": "§11 T23",
+	"end": {
+		"facing": "right",
+		"grid": ["", "", "", "", "....@"]
+	}
+}

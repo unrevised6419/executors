@@ -1,0 +1,12 @@
+{
+	"description": "Pushing works vertically and with diacritics.",
+	"language": "ro",
+	"start": {
+		"facing": "down",
+		"grid": ["@", "Ă"]
+	},
+	"end": {
+		"facing": "down",
+		"grid": ["", "@", "Ă"]
+	}
+}

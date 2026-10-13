@@ -1,0 +1,18 @@
+{
+	"description": "WHILE AT_EDGE runs its body when the ant faces the edge.",
+	"language": "ro",
+	"spec": "§11 T11",
+	"start": {
+		"facing": "up",
+		"grid": ["@"]
+	},
+	"end": {
+		"facing": "up",
+		"grid": ["@"]
+	},
+	"error": {
+		"code": "wall",
+		"line": 3,
+		"column": 1
+	}
+}

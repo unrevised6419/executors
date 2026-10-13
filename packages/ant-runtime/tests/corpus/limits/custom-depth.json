@@ -1,0 +1,18 @@
+{
+	"description": "The depth limit can be changed.",
+	"language": "ro",
+	"options": {
+		"maxDepth": 5
+	},
+	"end": {
+		"facing": "down",
+		"grid": ["@"]
+	},
+	"error": {
+		"code": "depth-limit",
+		"line": 2,
+		"column": 2,
+		"limit": 5
+	},
+	"steps": 6
+}

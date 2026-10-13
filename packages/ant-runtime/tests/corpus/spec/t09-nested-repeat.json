@@ -1,0 +1,9 @@
+{
+	"description": "REPEAT directly inside REPEAT works.",
+	"language": "ro",
+	"spec": "§11 T9",
+	"end": {
+		"facing": "right",
+		"grid": ["....@"]
+	}
+}

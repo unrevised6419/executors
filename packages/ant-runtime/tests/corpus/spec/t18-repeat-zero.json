@@ -1,0 +1,10 @@
+{
+	"description": "REPEAT 0 runs nothing.",
+	"language": "ro",
+	"spec": "§11 T18",
+	"end": {
+		"facing": "down",
+		"grid": ["@"]
+	},
+	"steps": 1
+}

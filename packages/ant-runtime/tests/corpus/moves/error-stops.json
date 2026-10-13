@@ -1,0 +1,14 @@
+{
+	"description": "An error stops the program.",
+	"language": "ro",
+	"end": {
+		"facing": "up",
+		"grid": [".@"]
+	},
+	"error": {
+		"code": "wall",
+		"line": 3,
+		"column": 1
+	},
+	"steps": 2
+}

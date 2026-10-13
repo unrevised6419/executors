@@ -1,0 +1,9 @@
+{
+	"description": "All four moves.",
+	"language": "ro",
+	"end": {
+		"facing": "up",
+		"grid": ["@"]
+	},
+	"steps": 4
+}

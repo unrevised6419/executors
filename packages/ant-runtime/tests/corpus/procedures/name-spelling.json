@@ -1,0 +1,8 @@
+{
+	"description": "Calls match names like keywords: case and diacritics are ignored.",
+	"language": "ro",
+	"end": {
+		"facing": "right",
+		"grid": ["..@"]
+	}
+}

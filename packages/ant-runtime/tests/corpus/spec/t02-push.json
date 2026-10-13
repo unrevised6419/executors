@@ -1,0 +1,13 @@
+{
+	"description": "The ant pushes an object one cell.",
+	"language": "ro",
+	"spec": "§11 T2",
+	"start": {
+		"facing": "down",
+		"grid": ["@.A"]
+	},
+	"end": {
+		"facing": "right",
+		"grid": ["..@A"]
+	}
+}

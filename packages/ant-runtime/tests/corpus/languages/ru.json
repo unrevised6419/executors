@@ -1,0 +1,8 @@
+{
+	"description": "A program in Russian.",
+	"language": "ru",
+	"end": {
+		"facing": "down",
+		"grid": ["", "", "..@"]
+	}
+}
