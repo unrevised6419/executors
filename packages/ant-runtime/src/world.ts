@@ -106,3 +106,82 @@ export function ahead(p: Point, direction: Direction): Point {
 export function atEdge(world: Pick<World, "ant" | "facing">): boolean {
 	return !inGrid(ahead(world.ant, world.facing));
 }
+
+/** An object pushed by a move. */
+export interface Push {
+	readonly char: string;
+	readonly from: Point;
+	readonly to: Point;
+}
+
+/** What a move would do, decided before anything changes. */
+export type MoveOutcome =
+	| { readonly ok: true; readonly to: Point; readonly push: Push | undefined }
+	| { readonly ok: false; readonly code: "wall" }
+	| {
+			readonly ok: false;
+			readonly code: "push-off-grid";
+			readonly object: GridObject;
+	  }
+	| {
+			readonly ok: false;
+			readonly code: "push-blocked";
+			readonly object: GridObject;
+			readonly blocker: GridObject;
+	  };
+
+/**
+ * Decides one step of the ant in `direction`: it walks into an empty cell,
+ * pushes one object one cell further, or fails (ant-spec §5.9).
+ */
+export function planMove(
+	ant: Point,
+	direction: Direction,
+	charAt: (p: Point) => string | undefined,
+): MoveOutcome {
+	const to = ahead(ant, direction);
+	if (!inGrid(to)) return { ok: false, code: "wall" };
+	const char = charAt(to);
+	if (char === undefined) return { ok: true, to, push: undefined };
+	const object = { ...to, char };
+	const beyond = ahead(to, direction);
+	if (!inGrid(beyond)) return { ok: false, code: "push-off-grid", object };
+	const blocking = charAt(beyond);
+	if (blocking !== undefined)
+		return {
+			ok: false,
+			code: "push-blocked",
+			object,
+			blocker: { ...beyond, char: blocking },
+		};
+	return { ok: true, to, push: { char, from: to, to: beyond } };
+}
+
+export interface MoveResult {
+	readonly world: World;
+	readonly outcome: MoveOutcome;
+}
+
+/** Moves the ant in a world. A failed move still turns the ant, as in a run. */
+export function moveAnt(world: World, direction: Direction): MoveResult {
+	const cells = new Map(world.objects.map((o) => [cellIndex(o), o.char]));
+	const outcome = planMove(world.ant, direction, (p) =>
+		cells.get(cellIndex(p)),
+	);
+	if (!outcome.ok) return { world: { ...world, facing: direction }, outcome };
+	const { push } = outcome;
+	const objects = push
+		? sortObjects(
+				world.objects.map((o) =>
+					o.x === push.from.x && o.y === push.from.y
+						? { ...push.to, char: o.char }
+						: o,
+				),
+			)
+		: world.objects;
+	return { world: { ant: outcome.to, facing: direction, objects }, outcome };
+}
+
+export function sortObjects(objects: readonly GridObject[]): GridObject[] {
+	return [...objects].sort((a, b) => a.y - b.y || a.x - b.x);
+}

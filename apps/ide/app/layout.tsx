@@ -1,0 +1,43 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
+import { StoreProvider } from "@/storage/StoreProvider";
+
+const geistSans = Geist({
+	variable: "--font-geist-sans",
+	subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+	variable: "--font-geist-mono",
+	subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+	title: "Furnica",
+	description: "Write programs for the ant and solve the worksheet tasks.",
+};
+
+export default function RootLayout({ children }: LayoutProps<"/">) {
+	return (
+		<html
+			lang="ro"
+			suppressHydrationWarning
+			className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+		>
+			<body className="min-h-full flex flex-col">
+				<ThemeProvider
+					attribute="class"
+					defaultTheme="system"
+					enableSystem
+					disableTransitionOnChange
+				>
+					<StoreProvider>{children}</StoreProvider>
+					<Toaster richColors />
+				</ThemeProvider>
+			</body>
+		</html>
+	);
+}
